@@ -1,0 +1,91 @@
+<template name="goals">
+  {{#if project}}
+    {{#each project}}
+    <div class="page-header">
+      <h3>{{name}}</h3>
+    </div>
+    {{/each}}
+    <div class="row">
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{currentWeek "-1"}}</h3>
+          </div>
+
+          <ul class="list-group">
+            {{#each goals "-1"}}
+              <li class="list-group-item {{addStateClass}}">
+                {{name}}
+                {{> goalActions}}
+              </li>
+            {{/each}}
+            <li class="list-group-item">
+              <input type="text" name="goal-name" class="form-control goal-name" placeholder="Add new goal..." data-week="{{currentWeek "-1"}}" data-toggle="tooltip" data-placement="top" title="just type it in and press enter">
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{currentWeek "0"}}</h3>
+          </div>
+
+          <ul class="list-group">
+            {{#each goals "0"}}
+              <li class="list-group-item {{addStateClass}}">
+                {{name}}
+                {{> goalActions}}
+              </li>
+            {{/each}}
+            <li class="list-group-item">
+              <input type="text" name="goal-name" class="form-control goal-name" placeholder="Add new goal..." data-week="{{currentWeek "0"}}" data-toggle="tooltip" data-placement="top" title="just type it in and press enter">
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{currentWeek "+1"}}</h3>
+          </div>
+
+          <ul class="list-group">
+            {{#each goals "+1"}}
+              <li class="list-group-item {{addStateClass}}">
+                {{name}}
+                {{> goalActions}}
+              </li>
+            {{/each}}
+            <li class="list-group-item">
+              <input type="text" name="goal-name" class="form-control goal-name" placeholder="Add new goal..." data-week="{{currentWeek "+1"}}" data-toggle="tooltip" data-placement="top" title="just type it in and press enter">
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  {{else}}
+    <div class="page-header">
+      <h3>Goals</h3>
+    </div>
+    <p class="lead">click on a project to start <br>
+    <img src="/arrow.png">
+    </p>
+  {{/if}}
+</template>
+
+<template name="goalActions">
+  <div class="btn-group pull-right">
+    <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
+       <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="setStatusReached" tabindex="-1" href="#"><span class="fa fa-check text-success"></span> Reached</a></li>
+      <li><a class="setStatusPartiallyReached" tabindex="-1" href="#"><span class="fa fa-star-half-o text-warning"></span> Partially reached</a></li>
+      <li><a class="setStatusNotReached" tabindex="-1" href="#"><span class="fa fa-times text-danger"></span> Not reached</a></li>
+      <li class="divider"></li>
+      <li><a class="setStatusDefault" tabindex="-1" href="#"><span class="fa fa-square-o text-danger"></span> Reset state</a></li>
+      <li><a class="delete" tabindex="-1" href="#"><span class="fa fa-trash"></span> Remove goal</a></li>
+    </ul>
+  </div>
+</template>

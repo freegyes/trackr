@@ -1,0 +1,32 @@
+.btn-Facebook:hover {
+  color: #cccccc;
+}
+
+#login-dropdown-list {
+ line-height: 50px; 
+}
+
+.nav-li {
+ line-height: 50px; 
+ padding-right: 15px;
+}
+
+
+ul.notifications {
+  top: 50px;
+  width: 350px;
+  position: fixed;
+}
+
+li.notification.error {
+  background-color: #d9534f;
+}
+li.notification.warning {
+  background-color: #f0ad4e;
+}
+li.notification.info {
+  background-color: #5bc0de;
+}
+li.notification.success {
+  background-color: #5cb85c;
+}
