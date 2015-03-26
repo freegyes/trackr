@@ -1,22 +1,36 @@
-Template.header.helpers({
-  week: function() {
+Template.header.rendered = function() {
     var now = new Date();
-    var weekNumber = getWeekNumber(now);
-    Session.set('currentWeek', weekNumber);
-    var display = weekNumber[0] + "." + weekNumber[1] + ".";
-    return display;
+    var dateArray = getWeekNumber(now);
+    Session.set('currentYear', dateArray[0]);
+    Session.set('currentWeek', dateArray[1]);
+}
+
+Template.header.helpers({
+  year: function(mod) {
+    return parseInt(Session.get('currentYear'))+parseInt(mod);
+  },
+  week: function(mod) {
+    return parseInt(Session.get('currentWeek'))+parseInt(mod);
   }
 })
 
-// Template.header.events({
-//   'keyup .week-number': function(e) {
-//     // if enter is pressed then add goal to db
-//     if (e.which == 13) {
-//       Session.set('currentWeek', $(e.target).val());
-//       Notifications.success('Timetravel successful', "Current week is: " + Session.get('currentWeek'));       
-//     }   
-//   }
-// })
+Template.header.events({
+  'submit form': function(e) {
+    e.preventDefault();
+
+    var year = $(e.target).find('[name=year]').val();
+    var week = $(e.target).find('[name=week]').val();
+    
+    Session.set('currentYear', year);
+    Session.set('currentWeek', week);
+
+    $("#year option:first").prop("selected", "selected");
+    $("#week option:first").prop("selected", "selected");
+
+
+    Notifications.success('Timetravel successful', "Current week is: " + Session.get('currentYear') + ". " + Session.get('currentWeek') + ".");
+  }
+})
 
 function getWeekNumber(d) {
     // Copy date so don't modify original

@@ -11,7 +11,9 @@ Template.goals.helpers({
     }
   },
   goals: function(mod) {
-    return Goals.find({project: Session.get('projectId'), week: currentWeek(mod)});
+    var week = parseInt(Session.get('currentWeek')) + parseInt(mod);
+    var year = parseInt(Session.get('currentYear'));
+    return Goals.find({project: Session.get('projectId'), year: year, week: week});
   },
   addStateClass: function() {
     switch (this.status) {
@@ -27,8 +29,11 @@ Template.goals.helpers({
         return "list-group-item-";  
     }
   },
-  currentWeek: function(mod) {
-    return currentWeek(mod);
+  year: function(mod) {
+    return parseInt(Session.get('currentYear'))+parseInt(mod);
+  },
+  week: function(mod) {
+    return parseInt(Session.get('currentWeek'))+parseInt(mod);
   }
 });
 
@@ -38,14 +43,19 @@ Template.goals.events({
     if (e.which == 13 && $(e.target).val()) {
       var goalAttributes = {
         name: $(e.target).val(),
+        year: $(e.target).data('year'),
         week: $(e.target).data('week'),
         project: Session.get('projectId')
       };
 
       Meteor.call('goalInsert', goalAttributes, function(error, result) {
         // show notifications
-        if (error) Notifications.error('Something is not right.', error.reason);
-        Notifications.success('Goal added', goalAttributes.name + ' has been successfully added.');       
+        if (error) {
+          Notifications.error('Something is not right.', error.reason);
+        } else {
+          Notifications.success('Goal added', goalAttributes.name + ' has been successfully added.');       
+        }
+
         // reset input 
         $('.goal-name').val('');
 
@@ -71,10 +81,3 @@ Template.goals.events({
     Goals.update(this._id, {$set: {status: "default"}})
   }
 })
-
-currentWeek = function(mod) {
-  var dateArray = Session.get('currentWeek');
-  dateArray[1] = dateArray[1] + parseInt(mod);
-  var display = dateArray[0] + "." + dateArray[1] + ".";
-  return display;    
-}

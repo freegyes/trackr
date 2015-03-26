@@ -14,14 +14,35 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="nav-li">
             <form class="form-inline">
-              <div class="form-group form-group-sm">
-                <label for="week">current week:</label>
-                <input type="text" class="form-control input-sm week-number" id="week-number" placeholder="2015.13." value="{{week}}" disabled>
-              </div>
+              <select class="form-control" name="year">
+                <optgroup label="Future" id="year">  
+                  <option value="{{year "0"}}">{{year "0"}}</option>
+                  <option value="{{year "+1"}}">{{year "+1"}}</option>
+                  <option value="{{year "+2"}}">{{year "+2"}}</option>
+                  <option value="{{year "+3"}}">{{year "+3"}}</option>
+                  <option value="{{year "+4"}}">{{year "+4"}}</option>
+                </optgroup>
+                <optgroup label="Past">
+                  <option value="{{year "-1"}}">{{year "-1"}}</option>
+                </optgroup>
+              </select>
+              <select class="form-control" name="week">
+                <optgroup label="Future" id="week">  
+                  <option value="{{week "0"}}">{{week "0"}}</option>
+                  <option value="{{week "+1"}}">{{week "+1"}}</option>
+                  <option value="{{week "+2"}}">{{week "+2"}}</option>
+                  <option value="{{week "+3"}}">{{week "+3"}}</option>
+                  <option value="{{week "+4"}}">{{week "+4"}}</option>
+                </optgroup>
+                <optgroup label="Past">
+                  <option value="{{week "-1"}}">{{week "-1"}}</option>
+                </optgroup>
+              </select> 
+              <button type="submit" class="btn btn-default">Change date</button>             
             </form>
           </li>
           <li class="nav-li">
-            {{> loginButtons}}
+            <!-- {{> loginButtons}} -->
           </li>
         </ul>
       </div><!--/.navbar-collapse -->

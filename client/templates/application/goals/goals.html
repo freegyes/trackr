@@ -2,14 +2,29 @@
   {{#if project}}
     {{#each project}}
     <div class="page-header">
-      <h3>{{name}}</h3>
+      <h3>
+        {{name}}
+        <!--
+        <div class="btn-group pull-right" data-toggle="buttons">
+          <label class="btn btn-default active">
+            <input type="radio" name="options" id="week-base" autocomplete="off" checked> Weeks
+          </label>
+          <label class="btn btn-default">
+            <input type="radio" name="options" id="month-base" autocomplete="off"> Months
+          </label>
+          <label class="btn btn-default">
+            <input type="radio" name="options" id="year-base" autocomplete="off"> Years
+          </label>
+        </div>
+        -->
+      </h3>
     </div>
     {{/each}}
     <div class="row">
       <div class="col-md-4">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">{{currentWeek "-1"}}</h3>
+            <h3 class="panel-title">{{year "0"}}. {{week "-1"}}.</h3>
           </div>
 
           <ul class="list-group">
@@ -20,7 +35,7 @@
               </li>
             {{/each}}
             <li class="list-group-item">
-              <input type="text" name="goal-name" class="form-control goal-name" placeholder="Add new goal..." data-week="{{currentWeek "-1"}}" data-toggle="tooltip" data-placement="top" title="just type it in and press enter">
+              <input type="text" name="goal-name--1" class="form-control goal-name" placeholder="Add new goal..." data-year="{{year "0"}}" data-week="{{week "-1"}}" data-toggle="tooltip" data-placement="top" title="just type it in and press enter">
             </li>
           </ul>
         </div>
@@ -28,7 +43,7 @@
       <div class="col-md-4">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">{{currentWeek "0"}}</h3>
+            <h3 class="panel-title">{{year "0"}}. {{week "0"}}.</h3>
           </div>
 
           <ul class="list-group">
@@ -39,7 +54,7 @@
               </li>
             {{/each}}
             <li class="list-group-item">
-              <input type="text" name="goal-name" class="form-control goal-name" placeholder="Add new goal..." data-week="{{currentWeek "0"}}" data-toggle="tooltip" data-placement="top" title="just type it in and press enter">
+              <input type="text" name="goal-name-0" class="form-control goal-name" placeholder="Add new goal..." data-year="{{year "0"}}" data-week="{{week "0"}}" data-toggle="tooltip" data-placement="top" title="just type it in and press enter">
             </li>
           </ul>
         </div>
@@ -47,7 +62,7 @@
       <div class="col-md-4">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">{{currentWeek "+1"}}</h3>
+            <h3 class="panel-title">{{year "0"}}. {{week "+1"}}.</h3>
           </div>
 
           <ul class="list-group">
@@ -58,7 +73,7 @@
               </li>
             {{/each}}
             <li class="list-group-item">
-              <input type="text" name="goal-name" class="form-control goal-name" placeholder="Add new goal..." data-week="{{currentWeek "+1"}}" data-toggle="tooltip" data-placement="top" title="just type it in and press enter">
+              <input type="text" name="goal-name-1" class="form-control goal-name" placeholder="Add new goal..." data-year="{{year "0"}}" data-week="{{week "+1"}}" data-toggle="tooltip" data-placement="top" title="just type it in and press enter">
             </li>
           </ul>
         </div>
@@ -68,7 +83,7 @@
     <div class="page-header">
       <h3>Goals</h3>
     </div>
-    <p class="lead">click on a project to start <br>
+    <p class="lead">Add a new project or click on an existing one to start.<br>
     <img src="/arrow.png">
     </p>
   {{/if}}
