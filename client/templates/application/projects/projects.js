@@ -52,8 +52,12 @@ Template.projectsList.events({
 });
 
 Template.projectItem.events({
-  'click .list-group-item': function() {
+  'click .list-group-item': function(e, tmpl) {
     Session.set('projectId', this._id);
+    //iterate through all active projects and remove active state
+    $('.list-group-item').removeClass('active');
+    // add active state to the clicked one
+    $('#' + this._id).addClass('active');    
   },
   'click .delete': function() {
     if (confirm("Are you sure you want to do this?")) {
