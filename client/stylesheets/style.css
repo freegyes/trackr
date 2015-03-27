@@ -30,3 +30,18 @@ li.notification.info {
 li.notification.success {
   background-color: #5cb85c;
 }
+
+/* h5 text in the middle of two hr-s*/
+
+h5 { 
+  width:100%; 
+  text-align:center; 
+  border-bottom: 1px solid #ccc; 
+  line-height:0.1em; 
+  margin:25px 0 20px; 
+} 
+
+h5 span { 
+  background:#fff; 
+  padding:0 10px; 
+}

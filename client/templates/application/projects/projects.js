@@ -15,10 +15,14 @@ Template.projectsList.created = function() {
 // }
 
 Template.projectsList.helpers({
-  projects: function() {     
+  projects: function(status) {     
 //    var sort = Session.get("sort_by");
 //    return Projects.find({}, {sort: sort, limit: Session.get('limit') });
-    return Projects.find({});
+    if (Projects.find({status: status}).count() === 0) {
+      return false;
+    } else {
+      return Projects.find({status: status});
+    }
   }
 });
 
@@ -97,5 +101,32 @@ Template.projectItem.events({
          }
        }
      });
-   }  
+   },
+   'click .setProjectInactive': function(e, tmpl) {
+     Session.set('projectId', null);
+     Notifications.warn('Project is now inactive', '');
+     Projects.update(this._id, {$set: {status: "inactive"}});
+   }
 });
+
+Template.inactiveProjectItem.events({
+  'click .setProjectActive': function(e, tmpl) {
+    Session.set('projectId', this._id);
+    Notifications.success('Project is now active', '');
+    Projects.update(this._id, {$set: {status: "active"}});
+  },
+  'click .deleteProject': function() {
+    var id = this._id;
+    bootbox.confirm("Are you sure you want to do this?", function(result) {
+      if (result) {
+        Projects.remove(id);
+        Meteor.call('deleteGoals', id, function(error, result) {
+          // show notifications
+          if (error) Notifications.error('Something is not right.', error.reason);
+        });  
+        Notifications.warn('Project and its goals were removed', 'Project\'s expired and gone to meet its maker.');
+        Session.set('projectId', null);
+      }
+     });
+   }
+})
