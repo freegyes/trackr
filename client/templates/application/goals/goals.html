@@ -3,28 +3,26 @@
     {{#each project}}
     <div class="page-header">
       <h3>
-        {{name}}
+        Goals for: {{name}}
+
         <!--
         <div class="btn-group pull-right" data-toggle="buttons">
-          <label class="btn btn-default active">
-            <input type="radio" name="options" id="week-base" autocomplete="off" checked> Weeks
+          {{#each views}}
+          <label class="btn btn-default time-frame {{viewClass}}">
+            <input type="radio" name="options" autocomplete="off"> {{timeFrame}} 
           </label>
-          <label class="btn btn-default">
-            <input type="radio" name="options" id="month-base" autocomplete="off"> Months
-          </label>
-          <label class="btn btn-default">
-            <input type="radio" name="options" id="year-base" autocomplete="off"> Years
-          </label>
+          {{/each}}
         </div>
         -->
+
       </h3>
     </div>
     {{/each}}
     <div class="row">
       <div class="col-md-4">
         <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">{{year "0"}}. {{week "-1"}}.</h3>
+          <div class="panel-heading text-center">
+            <h3 class="panel-title" data-toggle="tooltip" data-placement="top" title="{{year "0"}}. {{week "-1"}}.">{{viewBase}} {{week "-1"}}</h3>
           </div>
 
           <ul class="list-group">
@@ -35,15 +33,15 @@
               </li>
             {{/each}}
             <li class="list-group-item">
-              <input type="text" name="goal-name--1" class="form-control goal-name" placeholder="Add new goal..." data-year="{{year "0"}}" data-week="{{week "-1"}}" data-toggle="tooltip" data-placement="top" title="just type it in and press enter">
+              <input type="text" name="goal-name--1" class="form-control goal-name" placeholder="Add new goal..." data-mod="-1" data-year="{{year "0"}}" data-week="{{week "-1"}}" data-toggle="tooltip" data-placement="bottom" title="just type it in and press enter">
             </li>
           </ul>
         </div>
       </div>
       <div class="col-md-4">
         <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">{{year "0"}}. {{week "0"}}.</h3>
+          <div class="panel-heading text-center">
+            <h3 class="panel-title" data-toggle="tooltip" data-placement="top" title="{{year "0"}}. {{week "0"}}.">{{viewBase}} {{week "0"}}</h3>
           </div>
 
           <ul class="list-group">
@@ -54,15 +52,15 @@
               </li>
             {{/each}}
             <li class="list-group-item">
-              <input type="text" name="goal-name-0" class="form-control goal-name" placeholder="Add new goal..." data-year="{{year "0"}}" data-week="{{week "0"}}" data-toggle="tooltip" data-placement="top" title="just type it in and press enter">
+              <input type="text" name="goal-name-0" class="form-control goal-name" placeholder="Add new goal..." data-mod="0"  data-year="{{year "0"}}" data-week="{{week "0"}}" data-toggle="tooltip" data-placement="bottom" title="just type it in and press enter">
             </li>
           </ul>
         </div>
       </div>
       <div class="col-md-4">
         <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">{{year "0"}}. {{week "+1"}}.</h3>
+          <div class="panel-heading text-center">
+            <h3 class="panel-title" data-toggle="tooltip" data-placement="top" title="{{year "0"}}. {{week "+1"}}.">{{viewBase}} {{week "+1"}}</h3>
           </div>
 
           <ul class="list-group">
@@ -73,7 +71,7 @@
               </li>
             {{/each}}
             <li class="list-group-item">
-              <input type="text" name="goal-name-1" class="form-control goal-name" placeholder="Add new goal..." data-year="{{year "0"}}" data-week="{{week "+1"}}" data-toggle="tooltip" data-placement="top" title="just type it in and press enter">
+              <input type="text" name="goal-name-1" class="form-control goal-name" placeholder="Add new goal..." data-mod="+1"  data-year="{{year "0"}}" data-week="{{week "+1"}}" data-toggle="tooltip" data-placement="bottom" title="just type it in and press enter">
             </li>
           </ul>
         </div>
@@ -99,8 +97,9 @@
       <li><a class="setStatusPartiallyReached" tabindex="-1" href="#"><span class="fa fa-star-half-o text-warning"></span> Partially reached</a></li>
       <li><a class="setStatusNotReached" tabindex="-1" href="#"><span class="fa fa-times text-danger"></span> Not reached</a></li>
       <li class="divider"></li>
-      <li><a class="setStatusDefault" tabindex="-1" href="#"><span class="fa fa-square-o text-danger"></span> Reset state</a></li>
-      <li><a class="delete" tabindex="-1" href="#"><span class="fa fa-trash"></span> Remove goal</a></li>
+      <li><a class="setStatusDefault" tabindex="-1" href="#"><span class="fa fa-square-o"></span> Reset state</a></li>
+      <li><a class="setGoalName" tabindex="-1" href="#"><span class="fa fa-edit"></span> Edit name</a></li>
+      <li><a class="deleteGoal" tabindex="-1" href="#"><span class="fa fa-trash"></span> Remove goal</a></li>
     </ul>
   </div>
 </template>

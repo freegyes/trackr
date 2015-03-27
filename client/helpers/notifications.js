@@ -1,5 +1,5 @@
 Meteor.startup(function () {
     _.extend(Notifications.defaultOptions, {
-        timeout: 3000
+        timeout: 6000
     });
 });    

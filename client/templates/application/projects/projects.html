@@ -5,18 +5,55 @@
   <div class="form-group">
     <input type="text" name="project-name" class="form-control project-name" placeholder="Add new project..." data-toggle="tooltip" data-placement="top" title="just type it in and press enter">
   </div>
-  <div class="list-group">
-    {{#each projects}}
-      {{> projectItem}}
-    {{/each}}
-  </div>
+  {{#if projects "active"}}
+    <h5 class="text-muted"><span>active projects</span></h5>
+    <div class="list-group">
+      {{#each projects "active"}}
+        {{> projectItem}}
+      {{/each}}
+    </div>
+  {{/if}}
+  {{#if projects "inactive"}}
+    <h5 class="text-muted"><span>inactive projects</span></h5>
+    <div class="list-group">
+      {{#each projects "inactive"}}
+        {{> inactiveProjectItem}}
+      {{/each}}
+    </div>
+  {{/if}}
 </template>
 
 <template name="projectItem">
-  <a href="#" class="list-group-item">
+  <a href="#" id="{{this._id}}" class="list-group-item {{state}}">
     {{name}}
-    <button class="btn btn-xs btn-danger pull-right delete">
-      <span class="fa fa-times"></span>
+    {{> projectActions}}
+  </a>
+</template>
+
+<template name="projectActions">
+  <div id="btn-{{this._id}}" class="btn-group pull-right">
+    <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
+       <span class="caret"></span>
     </button>
+    <ul class="dropdown-menu">
+      <li><a class="setProjectName" tabindex="-1" href="#"><span class="fa fa-edit"></span> Edit name</a></li>
+      <li><a class="setProjectInactive" tabindex="-1" href="#"><span class="fa fa-ban"></span> Make inactive</a></li>
+      <li><a class="deleteProject" tabindex="-1" href="#"><span class="fa fa-trash"></span> Remove project</a></li>
+    </ul>
+  </div>
+</template>
+
+<template name="inactiveProjectItem">
+  <a href="#" id="{{this._id}}" class="list-group-item disabled">
+    {{name}}
+    <div id="btn-{{this._id}}" class="btn-group pull-right">
+      <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
+         <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="setProjectActive" tabindex="-1" href="#"><span class="fa fa-play text-success"></span> Make active</a></li>
+        <li><a class="deleteProject" tabindex="-1" href="#"><span class="fa fa-trash"></span> Remove project</a></li>
+      </ul>
+    </div>
   </a>
 </template>

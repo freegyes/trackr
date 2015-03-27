@@ -1,5 +1,13 @@
 Template.goals.created = function() {
   Meteor.subscribe('goals');
+  Meteor.subscribe('views');
+}
+
+Template.goals.rendered = function() {
+  Session.set('view', 'week');
+  $('input').tooltip();
+  $('h3').tooltip();
+
 }
 
 Template.goals.helpers({
@@ -34,17 +42,31 @@ Template.goals.helpers({
   },
   week: function(mod) {
     return parseInt(Session.get('currentWeek'))+parseInt(mod);
+  },
+  views: function() {
+    return Views.find();
+  },
+  viewClass: function() {
+    if (Session.equals('view', this.timeFrame)) {
+      return "active";  
+    };
+  },
+  viewBase: function() {
+    return Session.get('view');
   }
 });
 
 Template.goals.events({
   'keyup .goal-name': function(e) {
+    var currentWeek = parseInt(Session.get('currentWeek'));
+    var mod = parseInt($(e.target).data('mod'));
+    var modifiedWeek = currentWeek + mod;
     // if enter is pressed then add goal to db
     if (e.which == 13 && $(e.target).val()) {
       var goalAttributes = {
         name: $(e.target).val(),
         year: $(e.target).data('year'),
-        week: $(e.target).data('week'),
+        week: modifiedWeek,
         project: Session.get('projectId')
       };
 
@@ -62,11 +84,25 @@ Template.goals.events({
       });   
     }
   },
-  'click .delete': function() {
-    if (confirm("Are you sure you want to do this?")) {
-      Goals.remove(this._id);
-      Notifications.warn('Goal removed', 'Goal\'s expired and gone to meet its maker.');
-    }
+  'click .deleteGoal': function() {
+    Goals.remove(this._id);
+    Notifications.warn('Goal removed', 'Goal\'s expired and gone to meet its maker.');
+  },
+  'click .setGoalName': function(e, tmpl) {
+    // add goal id to session
+    Session.set('editing-goal', this._id);
+    bootbox.prompt({
+      title: "Edit the name of your goal:",
+      value: Goals.findOne({_id: Session.get('editing-goal')}).name,
+      callback: function(result) {
+        if (result === null) {
+          Session.set('editing-goal', null);
+        } else {
+           Goals.update(Session.get('editing-goal'), {$set: {name: result}});     
+           Notifications.success('Changed name', 'The name of the goal was changed successfully')
+        }
+      }
+    });
   },
   'click .setStatusReached': function() {
     Goals.update(this._id, {$set: {status: "reached"}})
@@ -79,5 +115,8 @@ Template.goals.events({
   },
   'click .setStatusDefault': function() {
     Goals.update(this._id, {$set: {status: "default"}})
+  },
+  'click .time-frame': function() {
+    Session.set('view', this.timeFrame);
   }
 })
