@@ -58,12 +58,15 @@ Template.goals.helpers({
 
 Template.goals.events({
   'keyup .goal-name': function(e) {
+    var currentWeek = parseInt(Session.get('currentWeek'));
+    var mod = parseInt($(e.target).data('mod'));
+    var modifiedWeek = currentWeek + mod;
     // if enter is pressed then add goal to db
     if (e.which == 13 && $(e.target).val()) {
       var goalAttributes = {
         name: $(e.target).val(),
         year: $(e.target).data('year'),
-        week: $(e.target).data('week'),
+        week: modifiedWeek,
         project: Session.get('projectId')
       };
 
