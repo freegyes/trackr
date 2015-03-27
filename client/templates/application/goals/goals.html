@@ -7,25 +7,22 @@
 
         <!--
         <div class="btn-group pull-right" data-toggle="buttons">
-          <label class="btn btn-default active">
-            <input type="radio" name="options" id="week-base" autocomplete="off" checked> Weeks
+          {{#each views}}
+          <label class="btn btn-default time-frame {{viewClass}}">
+            <input type="radio" name="options" autocomplete="off"> {{timeFrame}} 
           </label>
-          <label class="btn btn-default">
-            <input type="radio" name="options" id="month-base" autocomplete="off"> Months
-          </label>
-          <label class="btn btn-default">
-            <input type="radio" name="options" id="year-base" autocomplete="off"> Years
-          </label>
+          {{/each}}
         </div>
         -->
+
       </h3>
     </div>
     {{/each}}
     <div class="row">
       <div class="col-md-4">
         <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">{{year "0"}}. {{week "-1"}}.</h3>
+          <div class="panel-heading text-center">
+            <h3 class="panel-title" data-toggle="tooltip" data-placement="top" title="{{year "0"}}. {{week "-1"}}.">{{viewBase}} {{week "-1"}}</h3>
           </div>
 
           <ul class="list-group">
@@ -43,8 +40,8 @@
       </div>
       <div class="col-md-4">
         <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">{{year "0"}}. {{week "0"}}.</h3>
+          <div class="panel-heading text-center">
+            <h3 class="panel-title" data-toggle="tooltip" data-placement="top" title="{{year "0"}}. {{week "0"}}.">{{viewBase}} {{week "0"}}</h3>
           </div>
 
           <ul class="list-group">
@@ -62,8 +59,8 @@
       </div>
       <div class="col-md-4">
         <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">{{year "0"}}. {{week "+1"}}.</h3>
+          <div class="panel-heading text-center">
+            <h3 class="panel-title" data-toggle="tooltip" data-placement="top" title="{{year "0"}}. {{week "+1"}}.">{{viewBase}} {{week "+1"}}</h3>
           </div>
 
           <ul class="list-group">

@@ -1,5 +1,13 @@
 Template.goals.created = function() {
   Meteor.subscribe('goals');
+  Meteor.subscribe('views');
+}
+
+Template.goals.rendered = function() {
+  Session.set('view', 'week');
+  $('input').tooltip();
+  $('h3').tooltip();
+
 }
 
 Template.goals.helpers({
@@ -34,6 +42,17 @@ Template.goals.helpers({
   },
   week: function(mod) {
     return parseInt(Session.get('currentWeek'))+parseInt(mod);
+  },
+  views: function() {
+    return Views.find();
+  },
+  viewClass: function() {
+    if (Session.equals('view', this.timeFrame)) {
+      return "active";  
+    };
+  },
+  viewBase: function() {
+    return Session.get('view');
   }
 });
 
@@ -93,5 +112,8 @@ Template.goals.events({
   },
   'click .setStatusDefault': function() {
     Goals.update(this._id, {$set: {status: "default"}})
+  },
+  'click .time-frame': function() {
+    Session.set('view', this.timeFrame);
   }
 })

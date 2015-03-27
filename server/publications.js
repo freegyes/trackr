@@ -5,3 +5,7 @@ Meteor.publish('projects', function() {
 Meteor.publish('goals', function() {
   return Goals.find({});
 });
+
+Meteor.publish('views', function() {
+  return Views.find({});
+});
