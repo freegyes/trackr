@@ -7,10 +7,11 @@
 meteor-platform
 iron:router
 accounts-base
-twbs:bootstrap-noglyph
 sacha:spin
 fortawesome:fontawesome
 ian:accounts-ui-bootstrap-3
 audit-argument-checks
 accounts-password
 gfk:notifications
+twbs:bootstrap-noglyph
+mizzao:bootboxjs

@@ -51,19 +51,47 @@ Template.projectsList.events({
 //      Notifications.warn('Kapitány, ó Kapitányom!', 'Törölve, ahogy kérted.');
 });
 
+// Template.projectItem.helpers({
+//   editingProject: function() {
+//     return Session.equals('editing-project', this._id);
+//   }
+// })
+
+Template.projectItem.helpers({
+  state: function() {
+    if (Session.equals('projectId', this._id)) {
+      return "active";
+    };
+  }
+})
+
 Template.projectItem.events({
   'click .list-group-item': function(e, tmpl) {
     Session.set('projectId', this._id);
-    //iterate through all active projects and remove active state
-    $('.list-group-item').removeClass('active');
-    // add active state to the clicked one
-    $('#' + this._id).addClass('active');    
   },
-  'click .delete': function() {
-    if (confirm("Are you sure you want to do this?")) {
-      Projects.remove(this._id);
-      Notifications.warn('Project removed', 'Project\'s expired and gone to meet its maker.');
-      Session.set('projectId', null);
-    }
-  }
+  'click .deleteProject': function() {
+    bootbox.confirm("Are you sure you want to do this?", function(result) {
+      if (result) {
+        Projects.remove(Session.get('projectId'));
+        Notifications.warn('Project removed', 'Project\'s expired and gone to meet its maker.');
+        Session.set('projectId', null);
+      }
+     });
+   },
+   'click .setProjectName': function(e, tmpl) {
+     // add project id to session
+     Session.set('editing-project', this._id);
+     bootbox.prompt({
+       title: "Edit the name of your project:",
+       value: Projects.findOne({_id: Session.get('editing-project')}).name,
+       callback: function(result) {
+         if (result === null) {
+           Session.set('editing-project', null);
+         } else {
+            Projects.update(Session.get('editing-project'), {$set: {name: result}});     
+            Notifications.success('Changed name', 'The name of the project was changed successfully')
+         }
+       }
+     });
+   }  
 });
