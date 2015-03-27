@@ -73,7 +73,11 @@ Template.projectItem.events({
     bootbox.confirm("Are you sure you want to do this?", function(result) {
       if (result) {
         Projects.remove(Session.get('projectId'));
-        Notifications.warn('Project removed', 'Project\'s expired and gone to meet its maker.');
+        Meteor.call('deleteGoals', Session.get('projectId'), function(error, result) {
+          // show notifications
+          if (error) Notifications.error('Something is not right.', error.reason);
+        });  
+        Notifications.warn('Project and its goals were removed', 'Project\'s expired and gone to meet its maker.');
         Session.set('projectId', null);
       }
      });
