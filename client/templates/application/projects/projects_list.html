@@ -1,0 +1,29 @@
+<template name="projectsList">
+  <div class="page-header">
+    <h4>
+      <span class="fa fa-th-list"></span> 
+      Projects
+    </h4>
+  </div>
+  <div class="form-group">
+    <input type="text" name="project-name" class="form-control project-name" placeholder="Add new project..." data-toggle="tooltip" data-placement="top" title="just type it in and press enter">
+  </div>
+  {{#if projects "active"}}
+    <h5 class="text-muted"><span>active projects</span></h5>
+    <div class="list-group">
+      {{#each projects "active"}}
+        {{> projectItem}}
+      {{/each}}
+    </div>
+  {{/if}}
+  {{#if projects "inactive"}}
+    <h5 class="text-muted"><span>inactive projects</span></h5>
+    <div class="list-group">
+      {{#each projects "inactive"}}
+        {{> inactiveProjectItem}}
+      {{/each}}
+    </div>
+  {{/if}}
+  <h5 class="text-muted"><span>travel in time</span></h5>
+  {{> datepicker}}
+</template>

@@ -1,0 +1,14 @@
+<template name="inactiveBoardItem">
+  <a href="#" id="{{this._id}}" class="list-group-item disabled">
+    {{name}}
+    <div id="btn-{{this._id}}" class="btn-group pull-right">
+      <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
+         <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="setBoardActive" tabindex="-1" href="#"><span class="fa fa-play text-success"></span> Make active</a></li>
+        <li><a class="deleteBoard" tabindex="-1" href="#"><span class="fa fa-trash"></span> Remove board</a></li>
+      </ul>
+    </div>
+  </a>
+</template>

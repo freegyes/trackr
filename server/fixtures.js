@@ -15,19 +15,38 @@ if (Views.find().count() === 0) {
 }
 
 // Fixture data to set up dummy projects on first login
-if (Projects.find().count() === 0) {
+if (Boards.find().count() === 0) {
+  Boards.insert({
+    name: 'Personal projects',
+    submitted: new Date(),
+    status: 'active',
+    owner: null
+  });
+
+  Boards.insert({
+    name: 'Work projects',
+    submitted: new Date(),
+    status: 'active',
+    owner: null
+  });
+
+  var personalBoardId = Boards.findOne({name: 'Personal projects'})._id;
+
   Projects.insert({
     name: 'This is a test project (active)',
     submitted: new Date(),
     status: 'active',
+    board: personalBoardId,
     owner: null
   });
   Projects.insert({
     name: 'This is a test project (inactive)',
     submitted: new Date(),
     status: 'inactive',
+    board: personalBoardId,
     owner: null
   });
+
   // set goals for weeks
   var date = dateModifier(new Date(), 'week', -1);
 
@@ -37,7 +56,8 @@ if (Projects.find().count() === 0) {
     quarter: dateFormatter(date, 'Q'),
     month: dateFormatter(date, 'M'),
     week: dateFormatter(date, 'w'),
-    project: Projects.findOne()._id,
+    project: Projects.findOne({status: 'active'})._id,
+    board: personalBoardId,
     view: 'week',
     submitted: new Date(),
     status: "partially-reached",
@@ -49,7 +69,8 @@ if (Projects.find().count() === 0) {
     quarter: dateFormatter(date, 'Q'),
     month: dateFormatter(date, 'M'),
     week: dateFormatter(date, 'w'),
-    project: Projects.findOne()._id,
+    project: Projects.findOne({status: 'active'})._id,
+    board: personalBoardId,
     view: 'week',
     submitted: new Date(),
     status: "partially-reached",
@@ -61,7 +82,8 @@ if (Projects.find().count() === 0) {
     quarter: dateFormatter(date, 'Q'),
     month: dateFormatter(date, 'M'),
     week: dateFormatter(date, 'w'),
-    project: Projects.findOne()._id,
+    project: Projects.findOne({status: 'active'})._id,
+    board: personalBoardId,
     view: 'week',
     submitted: new Date(),
     status: "reached",
@@ -73,7 +95,8 @@ if (Projects.find().count() === 0) {
     quarter: dateFormatter(date, 'Q'),
     month: dateFormatter(date, 'M'),
     week: dateFormatter(date, 'w'),
-    project: Projects.findOne()._id,
+    project: Projects.findOne({status: 'active'})._id,
+    board: personalBoardId,
     view: 'week',
     submitted: new Date(),
     status: "not-reached",
@@ -85,7 +108,8 @@ if (Projects.find().count() === 0) {
     quarter: dateFormatter(date, 'Q'),
     month: dateFormatter(date, 'M'),
     week: dateFormatter(date, 'w'),
-    project: Projects.findOne()._id,
+    project: Projects.findOne({status: 'active'})._id,
+    board: personalBoardId,
     view: 'week',
     submitted: new Date(),
     status: "default",
@@ -100,7 +124,8 @@ if (Projects.find().count() === 0) {
     quarter: dateFormatter(date, 'Q'),
     month: dateFormatter(date, 'M'),
     week: dateFormatter(date, 'w'),
-    project: Projects.findOne()._id,
+    project: Projects.findOne({status: 'active'})._id,
+    board: personalBoardId,
     view: 'week',
     submitted: new Date(),
     status: "default",
@@ -112,7 +137,8 @@ if (Projects.find().count() === 0) {
     quarter: dateFormatter(date, 'Q'),
     month: dateFormatter(date, 'M'),
     week: dateFormatter(date, 'w'),
-    project: Projects.findOne()._id,
+    project: Projects.findOne({status: 'active'})._id,
+    board: personalBoardId,
     view: 'week',
     submitted: new Date(),
     status: "default",
@@ -127,7 +153,8 @@ if (Projects.find().count() === 0) {
     quarter: dateFormatter(date, 'Q'),
     month: dateFormatter(date, 'M'),
     week: dateFormatter(date, 'w'),
-    project: Projects.findOne()._id,
+    project: Projects.findOne({status: 'active'})._id,
+    board: personalBoardId,
     view: 'week',
     submitted: new Date(),
     status: "default",
