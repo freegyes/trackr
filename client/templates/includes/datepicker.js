@@ -14,9 +14,3 @@ Template.datepicker.events({
     Notifications.success('Timetravel successful', "Current date is: " + displayCurrentDate(date));
   }
 })
-
-Template.datepicker.helpers({
-  now: function() {
-    return displayCurrentDate(Session.get('currentDate'));
-  }
-})

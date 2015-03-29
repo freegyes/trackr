@@ -2,11 +2,12 @@ Template.goals.created = function() {
   Session.set('view', 'week');
   Session.set('currentDate', new Date());
   dateSetter(Session.get('currentDate'));
+  Session.set('projectId', null);
 }
 
 Template.goals.rendered = function() {
   var init = Tracker.autorun(function() {
-    Session.get('projectId');
+    Session.get('boardId');
     // wait for the dom to render
     setTimeout(function() {
       $('input').tooltip();
@@ -14,29 +15,40 @@ Template.goals.rendered = function() {
     }, 500);
   });
   // make a child project active on each board change event
-  var changeRoutes = Tracker.autorun(function() {
-    if (Projects.find({status: 'active', board: Session.get('boardId')}).count() === 0) {
-      Session.set('projectId', null);
-    } else {  
-      Session.set('projectId', Projects.findOne({status: 'active', board: Session.get('boardId')})._id);
-    }
-  });
+  // var changeRoutes = Tracker.autorun(function() {
+  //   if (Projects.find({status: 'active', board: Session.get('boardId')}).count() === 0) {
+  //     Session.set('projectId', null);
+  //   } else {  
+  //     Session.set('projectId', Projects.findOne({status: 'active', board: Session.get('boardId')})._id);
+  //   }
+  // });
 }
 
 Template.goals.helpers({
-  project: function() {
-    if (Session.get('projectId') === null) {
+  projects: function(status) { 
+
+    var selector = {
+      status: status,
+      board: Session.get('boardId')
+    };   
+    
+    if (Session.get('projectId')) {
+      selector._id = Session.get('projectId');
+    };
+    
+    if (Projects.find(selector).count() === 0) {
       return false;
     } else {
-      return Projects.find({_id: Session.get('projectId')});
-    }
+      return Projects.find(selector);
+    };
+    
   },
-  goals: function(mod) {
+  goals: function(mod, projectId) {
     var date = dateModifier(Session.get('currentDate'), Session.get('view'), parseInt(mod));
     var selector = {
       view: Session.get('view'),
       year: dateFormatter(date, 'YYYY'),
-      project: Session.get('projectId')
+      project: projectId
     };
     switch (Session.get('view')) {
       case 'week':
@@ -92,14 +104,6 @@ Template.goals.helpers({
   modifiedDate: function(mod) {
     return dateViewFormatter(dateModifier(Session.get('currentDate'), Session.get('view'), parseInt(mod)));
   },
-  views: function() {
-    return Views.find();
-  },
-  viewClass: function() {
-    if (Session.equals('view', this.timeFrame)) {
-      return "active";  
-    };
-  },
   viewBase: function() {
     return Session.get('view').toUpperCase();
   }
@@ -116,7 +120,7 @@ Template.goals.events({
         quarter: dateFormatter(date, 'Q'),
         month: dateFormatter(date, 'M'),
         week: dateFormatter(date, 'w'),
-        project: Session.get('projectId'),
+        project: $(e.target).data('project'),
         board: Session.get('boardId')
       };
 
@@ -133,22 +137,5 @@ Template.goals.events({
 
       });   
     }
-  },
-  'click .time-frame': function() {
-    Session.set('view', this.timeFrame);
-  },
-  'click .step-backwards': function() {
-    var date = dateModifier(Session.get('currentDate'), Session.get('view'), -1).toDate();
-    Session.set('currentDate', date);
-    dateSetter(Session.get('currentDate'));
-  },
-  'click .step-forwards': function() {
-    var date = dateModifier(Session.get('currentDate'), Session.get('view'), 1).toDate();
-    Session.set('currentDate', date);
-    dateSetter(Session.get('currentDate'));
-  },
-  'click .reset-date': function() {
-    Session.set('currentDate', new Date());
-    dateSetter(Session.get('currentDate'));
   }
 })

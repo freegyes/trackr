@@ -33,6 +33,11 @@ h5 span {
   padding:0 10px; 
 }
 
+.project-panel {
+  background: #E0ECF5;
+  background: rgba(224, 236, 245, 0.9);
+}
+
 /* misc */
 .mouse-hand {
   cursor: pointer;
@@ -44,4 +49,13 @@ h5 span {
 
 .more-margin {
   margin-right: 5px;
+}
+
+.second-nav {
+  top: 50px;
+  background-color: white;
+}
+
+.double-navbar-page {
+  padding-top: 100px;
 }

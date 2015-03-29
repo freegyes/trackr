@@ -27,7 +27,9 @@ Template.projectsList.events({
         if (error) Notifications.error('Something is not right.', error.reason);
         Notifications.success('Project added', projectAttributes.name + ' has been successfully added.');
         // set project active in the session
-        Session.set('projectId', result._id);
+        // Session.set('projectId', result._id);
+        // set session null
+        Session.set('projectId', null);
         // reset input 
         $('.project-name').val('');
 

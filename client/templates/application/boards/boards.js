@@ -1,3 +1,7 @@
+Template.boards.rendered = function() {
+  $('input').tooltip();
+};
+
 Template.boards.helpers({
   boards: function(status) {
     if (Boards.find({status: status}).count() === 0) {
