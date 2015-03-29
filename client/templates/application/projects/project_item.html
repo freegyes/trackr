@@ -1,0 +1,19 @@
+<template name="projectItem">
+  <a href="#" id="{{this._id}}" class="list-group-item {{state}}">
+    {{name}}
+    {{> projectActions}}
+  </a>
+</template>
+
+<template name="projectActions">
+  <div id="btn-{{this._id}}" class="btn-group pull-right">
+    <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
+       <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="setProjectName" tabindex="-1" href="#"><span class="fa fa-edit"></span> Edit name</a></li>
+      <li><a class="setProjectInactive" tabindex="-1" href="#"><span class="fa fa-ban"></span> Make inactive</a></li>
+      <li><a class="deleteProject" tabindex="-1" href="#"><span class="fa fa-trash"></span> Remove project</a></li>
+    </ul>
+  </div>
+</template>
