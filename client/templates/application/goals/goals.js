@@ -86,12 +86,6 @@ Template.goals.helpers({
   modifiedDate: function(mod) {
     return dateViewFormatter(dateModifier(Session.get('currentDate'), Session.get('view'), parseInt(mod)));
   },
-  year: function(mod) {
-    return parseInt(Session.get('currentYear'))+parseInt(mod);
-  },
-  week: function(mod) {
-    return parseInt(Session.get('currentWeek'))+parseInt(mod);
-  },
   views: function() {
     return Views.find();
   },
@@ -167,5 +161,19 @@ Template.goals.events({
   },
   'click .time-frame': function() {
     Session.set('view', this.timeFrame);
+  },
+  'click .step-backwards': function() {
+    var date = dateModifier(Session.get('currentDate'), Session.get('view'), -1).toDate();
+    Session.set('currentDate', date);
+    dateSetter(Session.get('currentDate'));
+  },
+  'click .step-forwards': function() {
+    var date = dateModifier(Session.get('currentDate'), Session.get('view'), 1).toDate();
+    Session.set('currentDate', date);
+    dateSetter(Session.get('currentDate'));
+  },
+  'click .reset-date': function() {
+    Session.set('currentDate', new Date());
+    dateSetter(Session.get('currentDate'));
   }
 })

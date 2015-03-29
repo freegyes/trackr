@@ -37,3 +37,7 @@ h5 span {
 .mouse-hand {
   cursor: pointer;
 }
+
+.more-padding {
+  padding-right: 10px;
+}
