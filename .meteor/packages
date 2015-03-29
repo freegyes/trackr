@@ -13,5 +13,7 @@ ian:accounts-ui-bootstrap-3
 audit-argument-checks
 accounts-password
 gfk:notifications
-twbs:bootstrap-noglyph
 mizzao:bootboxjs
+momentjs:moment
+twbs:bootstrap
+rajit:bootstrap3-datepicker

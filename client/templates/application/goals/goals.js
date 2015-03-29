@@ -1,13 +1,20 @@
 Template.goals.created = function() {
   Meteor.subscribe('goals');
   Meteor.subscribe('views');
+  Session.set('view', 'week');
+  Session.set('currentDate', new Date());
+  dateSetter(Session.get('currentDate'));
 }
 
 Template.goals.rendered = function() {
-  Session.set('view', 'week');
-  $('input').tooltip();
-  $('h3').tooltip();
-
+  var init = Tracker.autorun(function() {
+    Session.get('projectId');
+      // wait for the dom to render
+      setTimeout(function() {
+        $('input').tooltip();
+        $('h3').tooltip();  
+      }, 500);
+  });
 }
 
 Template.goals.helpers({
@@ -19,9 +26,48 @@ Template.goals.helpers({
     }
   },
   goals: function(mod) {
-    var week = parseInt(Session.get('currentWeek')) + parseInt(mod);
-    var year = parseInt(Session.get('currentYear'));
-    return Goals.find({project: Session.get('projectId'), year: year, week: week});
+    var date = dateModifier(Session.get('currentDate'), Session.get('view'), parseInt(mod));
+    var selector = {
+      view: Session.get('view'),
+      year: dateFormatter(date, 'YYYY'),
+      project: Session.get('projectId')
+    };
+    switch (Session.get('view')) {
+      case 'week':
+        selector.week = dateViewFormatter(date);
+        break;
+      case 'month':
+        selector.month = dateViewFormatter(date);
+        break;
+      case 'quarter':
+        selector.quarter = dateViewFormatter(date);
+        break;
+      case 'year':
+        selector.year = dateViewFormatter(date);
+        break;
+      default:
+        break;
+    };
+    return Goals.find(selector);
+  },
+  goalsRange: function(mod) {
+    var date = dateModifier(Session.get('currentDate'), Session.get('view'), parseInt(mod));
+    switch (Session.get('view')) {
+      case 'week':
+        return date.format('[week: ] YYYY. w.');
+        break;
+      case 'month':
+        return date.format('YYYY. MM.');
+        break;
+      case 'quarter':
+        return date.format('[quarter: ] YYYY. Q.');
+        break;
+      case 'year':
+        return date.format('YYYY.');
+        break;
+      default:
+        break;
+    };
   },
   addStateClass: function() {
     switch (this.status) {
@@ -36,6 +82,9 @@ Template.goals.helpers({
       default:
         return "list-group-item-";  
     }
+  },
+  modifiedDate: function(mod) {
+    return dateViewFormatter(dateModifier(Session.get('currentDate'), Session.get('view'), parseInt(mod)));
   },
   year: function(mod) {
     return parseInt(Session.get('currentYear'))+parseInt(mod);
@@ -52,21 +101,21 @@ Template.goals.helpers({
     };
   },
   viewBase: function() {
-    return Session.get('view');
+    return Session.get('view').toUpperCase();
   }
 });
 
 Template.goals.events({
   'keyup .goal-name': function(e) {
-    var currentWeek = parseInt(Session.get('currentWeek'));
-    var mod = parseInt($(e.target).data('mod'));
-    var modifiedWeek = currentWeek + mod;
-    // if enter is pressed then add goal to db
     if (e.which == 13 && $(e.target).val()) {
+      var date = dateModifier(Session.get('currentDate'), Session.get('view'), parseInt($(e.target).data('mod')));
       var goalAttributes = {
         name: $(e.target).val(),
-        year: $(e.target).data('year'),
-        week: modifiedWeek,
+        view: Session.get('view'),
+        year: dateFormatter(date, 'YYYY'),
+        quarter: dateFormatter(date, 'Q'),
+        month: dateFormatter(date, 'M'),
+        week: dateFormatter(date, 'w'),
         project: Session.get('projectId')
       };
 

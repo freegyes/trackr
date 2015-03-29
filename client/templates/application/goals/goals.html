@@ -5,7 +5,6 @@
       <h3>
         Goals for: {{name}}
 
-        <!--
         <div class="btn-group pull-right" data-toggle="buttons">
           {{#each views}}
           <label class="btn btn-default time-frame {{viewClass}}">
@@ -13,16 +12,18 @@
           </label>
           {{/each}}
         </div>
-        -->
 
       </h3>
+
     </div>
     {{/each}}
     <div class="row">
       <div class="col-md-4">
         <div class="panel panel-default">
           <div class="panel-heading text-center">
-            <h3 class="panel-title" data-toggle="tooltip" data-placement="top" title="{{year "0"}}. {{week "-1"}}.">{{viewBase}} {{week "-1"}}</h3>
+            <h3 class="panel-title" data-toggle="tooltip" data-placement="top" title="{{goalsRange "-1"}}" data-original-title="{{goalsRange "-1"}}">
+              {{viewBase}} {{modifiedDate "-1"}}
+            </h3>
           </div>
 
           <ul class="list-group">
@@ -33,7 +34,7 @@
               </li>
             {{/each}}
             <li class="list-group-item">
-              <input type="text" name="goal-name--1" class="form-control goal-name" placeholder="Add new goal..." data-mod="-1" data-year="{{year "0"}}" data-week="{{week "-1"}}" data-toggle="tooltip" data-placement="bottom" title="just type it in and press enter">
+              <input type="text" name="goal-name--1" class="form-control goal-name" placeholder="Add new goal..." data-mod="-1" data-toggle="tooltip" data-placement="bottom" title="just type it in and press enter">
             </li>
           </ul>
         </div>
@@ -41,7 +42,9 @@
       <div class="col-md-4">
         <div class="panel panel-default">
           <div class="panel-heading text-center">
-            <h3 class="panel-title" data-toggle="tooltip" data-placement="top" title="{{year "0"}}. {{week "0"}}.">{{viewBase}} {{week "0"}}</h3>
+            <h3 class="panel-title" data-toggle="tooltip" data-placement="top" title="{{goalsRange "0"}}" data-original-title="{{goalsRange "0"}}">
+              {{viewBase}} {{modifiedDate "0"}}
+            </h3>
           </div>
 
           <ul class="list-group">
@@ -52,7 +55,7 @@
               </li>
             {{/each}}
             <li class="list-group-item">
-              <input type="text" name="goal-name-0" class="form-control goal-name" placeholder="Add new goal..." data-mod="0"  data-year="{{year "0"}}" data-week="{{week "0"}}" data-toggle="tooltip" data-placement="bottom" title="just type it in and press enter">
+              <input type="text" name="goal-name-0" class="form-control goal-name" placeholder="Add new goal..." data-mod="0" data-toggle="tooltip" data-placement="bottom" title="just type it in and press enter">
             </li>
           </ul>
         </div>
@@ -60,7 +63,9 @@
       <div class="col-md-4">
         <div class="panel panel-default">
           <div class="panel-heading text-center">
-            <h3 class="panel-title" data-toggle="tooltip" data-placement="top" title="{{year "0"}}. {{week "+1"}}.">{{viewBase}} {{week "+1"}}</h3>
+            <h3 class="panel-title" data-toggle="tooltip" data-placement="top" title="{{goalsRange "+1"}}" data-original-title="{{goalsRange "+1"}}">
+              {{viewBase}} {{modifiedDate "+1"}}
+            </h3>
           </div>
 
           <ul class="list-group">
@@ -71,7 +76,7 @@
               </li>
             {{/each}}
             <li class="list-group-item">
-              <input type="text" name="goal-name-1" class="form-control goal-name" placeholder="Add new goal..." data-mod="+1"  data-year="{{year "0"}}" data-week="{{week "+1"}}" data-toggle="tooltip" data-placement="bottom" title="just type it in and press enter">
+              <input type="text" name="goal-name-1" class="form-control goal-name" placeholder="Add new goal..." data-mod="+1" data-toggle="tooltip" data-placement="bottom" title="just type it in and press enter">
             </li>
           </ul>
         </div>

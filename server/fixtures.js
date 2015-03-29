@@ -7,6 +7,9 @@ if (Views.find().count() === 0) {
     timeFrame: 'month'
   });
   Views.insert({
+    timeFrame: 'quarter'
+  });
+  Views.insert({
     timeFrame: 'year'
   });
 }
