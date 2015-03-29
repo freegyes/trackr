@@ -1,4 +1,6 @@
 Session.setDefault('projectId', null);
+Session.setDefault('editing-project', null);
+Session.setDefault('editing-goal', null);
 Session.setDefault('currentDate', null);
 Session.setDefault('currentYear', null);
 Session.setDefault('currentQuarter', null);

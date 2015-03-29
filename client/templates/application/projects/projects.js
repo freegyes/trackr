@@ -77,8 +77,12 @@ Template.projectItem.events({
           // show notifications
           if (error) Notifications.error('Something is not right.', error.reason);
         });  
-        Notifications.warn('Project and its goals were removed', 'Project\'s expired and gone to meet its maker.');
-        Session.set('projectId', null);
+        Notifications.warn('Project and its goals were removed', '');
+        if (Projects.findOne({status: 'active'})) {
+          Session.set('projectId', Projects.findOne({status: 'active'})._id);
+        } else {
+          Session.set('projectId', null);
+        }
       }
      });
    },
@@ -120,7 +124,7 @@ Template.inactiveProjectItem.events({
           // show notifications
           if (error) Notifications.error('Something is not right.', error.reason);
         });  
-        Notifications.warn('Project and its goals were removed', 'Project\'s expired and gone to meet its maker.');
+        Notifications.warn('Project and its goals were removed', '');
         Session.set('projectId', null);
       }
      });
