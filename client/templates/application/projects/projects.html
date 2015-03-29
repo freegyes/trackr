@@ -21,6 +21,8 @@
       {{/each}}
     </div>
   {{/if}}
+  <h5 class="text-muted"><span>travel in time</span></h5>
+  {{> datepicker}}
 </template>
 
 <template name="projectItem">
@@ -56,4 +58,22 @@
       </ul>
     </div>
   </a>
+</template>
+
+
+<template name="datepicker">
+  <div class="panel-group" id="set-date-accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+        <div class="panel-heading mouse-hand" role="tab" id="headingOne" data-toggle="collapse" data-parent="#set-date-accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          <span class="fa fa-calendar"></span>
+              Change the date <span class="label label-info">{{now}}</span>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            <div id="datepicker"></div>
+            <button class="btn btn-primary btn-block set-date">Set date</button>
+          </div>
+        </div>
+      </div>
+    </div>
 </template>

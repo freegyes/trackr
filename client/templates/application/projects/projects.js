@@ -1,23 +1,9 @@
 Template.projectsList.created = function() {
-//   Session.setDefault('limit', 10);
-//   Tracker.autorun(function() {
-     Meteor.subscribe('projects');
-//   });
+  Meteor.subscribe('projects');
 }
-
-// Template.booksList.rendered = function() {
-//   // is triggered every time we scroll
-//   $(window).scroll(function() {
-//     if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-//       incrementLimit();
-//     }
-//   });
-// }
 
 Template.projectsList.helpers({
   projects: function(status) {     
-//    var sort = Session.get("sort_by");
-//    return Projects.find({}, {sort: sort, limit: Session.get('limit') });
     if (Projects.find({status: status}).count() === 0) {
       return false;
     } else {
@@ -46,20 +32,30 @@ Template.projectsList.events({
       });   
     }
   }
-
-//    e.preventDefault();
-//
-//    if (confirm("Biztos-biztos?")) {
-//      var currentReferenceId = this._id;
-//      Books.remove(currentReferenceId);
-//      Notifications.warn('Kapitány, ó Kapitányom!', 'Törölve, ahogy kérted.');
 });
 
-// Template.projectItem.helpers({
-//   editingProject: function() {
-//     return Session.equals('editing-project', this._id);
-//   }
-// })
+Template.datepicker.rendered = function() {
+  $('#datepicker').datepicker({
+      todayBtn: true,
+      calendarWeeks: true,
+      todayHighlight: true,
+  });
+}
+
+Template.datepicker.events({
+  'click .set-date': function() {
+    var date = moment($("#datepicker").datepicker('getFormattedDate'), "MM-DD-YYYY").toDate();
+    dateSetter(date);
+    Session.set('currentDate', date);
+    Notifications.success('Timetravel successful', "Current date is: " + displayCurrentDate(date));
+  }
+})
+
+Template.datepicker.helpers({
+  now: function() {
+    return displayCurrentDate(Session.get('currentDate'));
+  }
+})
 
 Template.projectItem.helpers({
   state: function() {
@@ -81,8 +77,12 @@ Template.projectItem.events({
           // show notifications
           if (error) Notifications.error('Something is not right.', error.reason);
         });  
-        Notifications.warn('Project and its goals were removed', 'Project\'s expired and gone to meet its maker.');
-        Session.set('projectId', null);
+        Notifications.warn('Project and its goals were removed', '');
+        if (Projects.findOne({status: 'active'})) {
+          Session.set('projectId', Projects.findOne({status: 'active'})._id);
+        } else {
+          Session.set('projectId', null);
+        }
       }
      });
    },
@@ -124,7 +124,7 @@ Template.inactiveProjectItem.events({
           // show notifications
           if (error) Notifications.error('Something is not right.', error.reason);
         });  
-        Notifications.warn('Project and its goals were removed', 'Project\'s expired and gone to meet its maker.');
+        Notifications.warn('Project and its goals were removed', '');
         Session.set('projectId', null);
       }
      });

@@ -1,17 +1,4 @@
-.btn-Facebook:hover {
-  color: #cccccc;
-}
-
-#login-dropdown-list {
- line-height: 50px; 
-}
-
-.nav-li {
- line-height: 50px; 
- padding-right: 15px;
-}
-
-
+/* Notifications extra styling */
 ul.notifications {
   top: 50px;
   width: 350px;
@@ -44,4 +31,13 @@ h5 {
 h5 span { 
   background:#fff; 
   padding:0 10px; 
+}
+
+/* misc */
+.mouse-hand {
+  cursor: pointer;
+}
+
+.more-padding {
+  padding-right: 10px;
 }
