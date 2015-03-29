@@ -6,7 +6,10 @@
     <div class="container">
       {{> header}}
       <div id="main">
-        {{> yield}}
+        {{> notifications}}
+        <div class="container">
+          {{> yield}}
+        </div>
       </div>
     </div>
   </body> <!-- /container --> 

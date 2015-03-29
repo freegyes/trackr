@@ -2,8 +2,9 @@
   {{#if project}}
     {{#each project}}
     <div class="page-header">
-      <h3>
-        Goals for: {{name}}
+      <h4>
+        <span class="fa fa-check-square-o"></span> 
+        {{name}}
 
         <div class="btn-group pull-right" data-toggle="buttons">
           {{#each views}}
@@ -19,7 +20,7 @@
           <button type="button" class="btn btn-default step-forwards"><span class="fa fa-caret-right"></span> </button>
         </div>
 
-      </h3>
+      </h4>
 
     </div>
     {{/each}}
@@ -90,10 +91,12 @@
     </div>
   {{else}}
     <div class="page-header">
-      <h3>Goals</h3>
+      <h4>
+        <span class="fa fa-check-square-o"></span> 
+        Goals
+      </h4>
     </div>
-    <p class="lead">Add a new project or click on an existing one to start.<br>
-    <img src="/arrow.png">
+    <p class="lead">Add a new active project to start.<br>
     </p>
   {{/if}}
 </template>

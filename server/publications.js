@@ -9,3 +9,7 @@ Meteor.publish('goals', function() {
 Meteor.publish('views', function() {
   return Views.find({});
 });
+
+Meteor.publish('boards', function() {
+  return Boards.find({});
+});

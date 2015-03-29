@@ -1,13 +1,14 @@
-Template.projectsList.created = function() {
-  Meteor.subscribe('projects');
-}
-
 Template.projectsList.helpers({
-  projects: function(status) {     
-    if (Projects.find({status: status}).count() === 0) {
+  projects: function(status) { 
+
+    var selector = {
+      status: status,
+      board: Session.get('boardId')
+    }    
+    if (Projects.find(selector).count() === 0) {
       return false;
     } else {
-      return Projects.find({status: status});
+      return Projects.find(selector);
     }
   }
 });
@@ -17,7 +18,8 @@ Template.projectsList.events({
     // if enter is pressed then add project to db
     if (e.which == 13 && $('.project-name').val()) {
       var projectAttributes = {
-        name: $('.project-name').val()
+        name: $('.project-name').val(),
+        board: Session.get('boardId')
       };
 
       Meteor.call('projectInsert', projectAttributes, function(error, result) {

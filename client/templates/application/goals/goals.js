@@ -1,6 +1,4 @@
 Template.goals.created = function() {
-  Meteor.subscribe('goals');
-  Meteor.subscribe('views');
   Session.set('view', 'week');
   Session.set('currentDate', new Date());
   dateSetter(Session.get('currentDate'));
@@ -9,11 +7,19 @@ Template.goals.created = function() {
 Template.goals.rendered = function() {
   var init = Tracker.autorun(function() {
     Session.get('projectId');
-      // wait for the dom to render
-      setTimeout(function() {
-        $('input').tooltip();
-        $('h3').tooltip();  
-      }, 500);
+    // wait for the dom to render
+    setTimeout(function() {
+      $('input').tooltip();
+      $('h3').tooltip();  
+    }, 500);
+  });
+  // make a child project active on each board change event
+  var changeRoutes = Tracker.autorun(function() {
+    if (Projects.find({status: 'active', board: Session.get('boardId')}).count() === 0) {
+      Session.set('projectId', null);
+    } else {  
+      Session.set('projectId', Projects.findOne({status: 'active', board: Session.get('boardId')})._id);
+    }
   });
 }
 
@@ -110,7 +116,8 @@ Template.goals.events({
         quarter: dateFormatter(date, 'Q'),
         month: dateFormatter(date, 'M'),
         week: dateFormatter(date, 'w'),
-        project: Session.get('projectId')
+        project: Session.get('projectId'),
+        board: Session.get('boardId')
       };
 
       Meteor.call('goalInsert', goalAttributes, function(error, result) {
