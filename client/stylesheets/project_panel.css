@@ -1,0 +1,128 @@
+@media (min-width: 480px) and (min-height: 431px){
+  #project-panel {
+    background: #E0ECF5;
+    background: rgba(224, 236, 245, 0.9);
+    border-bottom: 1px solid #B2CFE6;
+    border-left: 1px solid #B2CFE6;
+    border-top: 1px solid #B2CFE6;
+    font-size: 85%;
+    margin-left:-320px;
+    padding: 10px;
+    position: fixed;
+    left: 0;
+    top: 125px;
+    width: 320px;
+    z-index: 10000;
+    vertical-align: middle;
+  }
+  #project-table {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-bottom: 20px;
+  }
+  #project-table table{
+    table-layout: fixed;
+    width: 299px;
+    word-wrap:break-word;
+  }
+}
+
+@media (max-width: 479px){
+  #project-panel {
+    background: #E0ECF5;
+    background: rgba(224, 236, 245, 0.9);
+    border-bottom: 1px solid #B2CFE6;
+    border-left: 1px solid #B2CFE6;
+    border-top: 1px solid #B2CFE6;
+    font-size: 85%;
+    padding: 10px;
+    vertical-align: middle;
+    margin-bottom: 20px;
+    margin-right: 0px !important;
+  }
+  #opener {
+    display: none;
+  }
+}
+
+@media (min-height: 630px) and (min-width: 480px){
+  #project-panel {
+    min-height: 400px;
+  }
+  #project-table{
+    max-height: 400px;
+  }
+}
+
+@media (min-height: 531px) and (max-height: 629px) and (min-width: 480px){
+  #project-panel {
+    min-height: 300px;
+  }
+  #project-table{
+    max-height: 300px;
+  }
+}
+
+@media (min-height: 430px) and (max-height: 530px) and (min-width: 480px){
+  #project-panel {
+    min-height: 200px;
+  }
+  #project-table{
+    max-height: 200px;
+  }
+}
+
+@media (max-height: 429px) and (min-width: 480px){
+  #opener {
+    display: none;
+  }
+  #project-panel {
+    background: #E0ECF5;
+    background: rgba(224, 236, 245, 0.9);
+    border-bottom: 1px solid #B2CFE6;
+    border-left: 1px solid #B2CFE6;
+    border-top: 1px solid #B2CFE6;
+    font-size: 85%;
+    padding: 10px;
+    vertical-align: middle;
+    margin-bottom: 20px;
+    margin-right: 0px !important;
+  }
+}
+
+#project-table::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+    height: 7px;
+}
+#project-table::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.table-header-rounded {
+  border-top-left-radius: 5px !important;
+  border-top-right-radius: 5px !important;
+}
+
+#opener {
+  background: #E0ECF5;
+  background: rgba(224, 236, 245, 0.9);
+  border-bottom: 1px solid #B2CFE6;
+  border-right: 1px solid #B2CFE6;
+  border-top: 1px solid #B2CFE6;
+  float:right;
+  height: 40px;
+  margin:-11px -140px 0 0px;
+  padding: 10px 10px 10px 13px;
+  width: 140px;
+  z-index: 1000;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-radius-bottomright: 5px;
+  border-bottom-right-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-radius-topright: 5px;
+  border-top-right-radius: 5px;
+  cursor: default;
+}

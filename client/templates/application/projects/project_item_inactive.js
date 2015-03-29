@@ -1,6 +1,5 @@
 Template.inactiveProjectItem.events({
   'click .setProjectActive': function(e, tmpl) {
-    Session.set('projectId', this._id);
     Notifications.success('Project is now active', '');
     Projects.update(this._id, {$set: {status: "active"}});
   },
