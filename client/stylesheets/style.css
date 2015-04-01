@@ -76,12 +76,20 @@ table {
   cursor: pointer;
 }
 
+.mouse-default {
+  cursor: default;
+}
+
 .more-padding {
   padding-right: 10px;
 }
 
 .padding-top-5 {
   padding-top: 5px;
+}
+
+.padding-top-10 {
+  padding-top: 10px;
 }
 
 .more-margin {
@@ -98,7 +106,16 @@ table {
 
 .second-nav {
   top: 50px;
+  max-height: 50px;
+  overflow: hidden;
   background-color: white;
+}
+
+.truncate {
+  width: 450px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .double-navbar-page {

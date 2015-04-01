@@ -1,18 +1,33 @@
 <template name="boardPage">
   <div class="navbar navbar-default navbar-fixed-top second-nav">
     <div class="container">
-      <h2>
-        <span class="fa fa-th-large"></span> 
-        {{name}}
-        {{>viewControl}}
-        {{>timeControl}}
-        <small>
-          ({{projectsCount}} projects)
-        </small>
-      </h2>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-twin">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="navbar-brand mouse-default truncate">
+          <span class="fa fa-th-large"></span> 
+          {{name}}
+          <small>
+            ({{projectsCount}} projects)
+          </small>
+        </a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbar-twin">
+        <ul class="nav navbar-nav navbar-right padding-top-10">
+          {{>viewControl}}
+          {{>timeControl}}
+        </ul>      
+      </div><!-- /.navbar-collapse -->
+
     </div>
   </div>
   <div class="double-navbar-page">
       {{> goals}}
   </div>
-</template> 
+</template>
