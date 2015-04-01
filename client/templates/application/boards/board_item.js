@@ -1,6 +1,6 @@
 Template.boardItem.helpers({
   projectsCount: function() {
-    return Projects.find({board: this._id}).count();
+    return Projects.find({board: this._id, status: "active"}).count();
   },
   goalsCount: function() {
     return Goals.find({board: this._id}).count();

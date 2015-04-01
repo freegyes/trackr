@@ -57,7 +57,6 @@ h5 span {
     }
 }
 
-
 .text-condensed {
   font-size: 85%;
 }
@@ -79,6 +78,10 @@ table {
 
 .more-padding {
   padding-right: 10px;
+}
+
+.padding-top-5 {
+  padding-top: 5px;
 }
 
 .more-margin {

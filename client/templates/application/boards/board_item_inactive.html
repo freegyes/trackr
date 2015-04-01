@@ -1,7 +1,9 @@
 <template name="inactiveBoardItem">
   <a href="#" id="{{this._id}}" class="list-group-item disabled">
-    {{name}}
-    <div id="btn-{{this._id}}" class="btn-group pull-right">
+    <strong>
+      {{name}}
+    </strong>
+    <div id="btn-{{this._id}}" class="btn-group action-dropdown">
       <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
          <span class="caret"></span>
       </button>

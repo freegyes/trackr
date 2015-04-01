@@ -6,18 +6,9 @@
     <input type="text" name="board-name" class="form-control board-name" placeholder="Add new board..." data-toggle="tooltip" data-placement="top" title="just type it in and press enter">
   </div>
   {{#if boards "active"}}
-    <h5 class="text-muted"><span>active boards</span></h5>
     <div class="list-group">
       {{#each boards "active"}}
         {{> boardItem}}
-      {{/each}}
-    </div>
-  {{/if}}
-  {{#if boards "inactive"}}
-    <h5 class="text-muted"><span>inactive boards</span></h5>
-    <div class="list-group">
-      {{#each boards "inactive"}}
-        {{> inactiveBoardItem}}
       {{/each}}
     </div>
   {{/if}}
