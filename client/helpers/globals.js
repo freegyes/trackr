@@ -27,3 +27,9 @@ Template.registerHelper('projects',function(selector){
 Template.registerHelper('sort',function(){
   return {submitted: -1}
 });
+
+//boardName
+// global helper for retrieving a board's name by id
+Template.registerHelper('boardName', function(boardId){
+  return Boards.findOne({_id: boardId}).name;
+})

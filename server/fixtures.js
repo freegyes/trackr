@@ -17,32 +17,60 @@ if (Views.find().count() === 0) {
 // Fixture data to set up dummy projects on first login
 if (Boards.find().count() === 0) {
   Boards.insert({
-    name: 'Personal projects',
+    name: 'Tutorial board',
     submitted: new Date(),
     status: 'active',
     owner: null
   });
 
-  Boards.insert({
-    name: 'Work projects',
-    submitted: new Date(),
-    status: 'active',
-    owner: null
-  });
-
-  var personalBoardId = Boards.findOne({name: 'Personal projects'})._id;
+  var personalBoardId = Boards.findOne({name: 'Tutorial board'})._id;
 
   Projects.insert({
-    name: 'This is a test project (active)',
+    name: 'Add new project',
     submitted: new Date(),
     status: 'active',
     board: personalBoardId,
     owner: null
   });
   Projects.insert({
-    name: 'This is a test project (inactive)',
+    name: 'Add new goals for weeks, months..',
     submitted: new Date(),
-    status: 'inactive',
+    status: 'active',
+    board: personalBoardId,
+    owner: null
+  });
+  Projects.insert({
+    name: 'Rename projects and goals',
+    submitted: new Date(),
+    status: 'active',
+    board: personalBoardId,
+    owner: null
+  });
+  Projects.insert({
+    name: 'Make projects inactive',
+    submitted: new Date(),
+    status: 'active',
+    board: personalBoardId,
+    owner: null
+  });
+  Projects.insert({
+    name: 'Delete anything',
+    submitted: new Date(),
+    status: 'active',
+    board: personalBoardId,
+    owner: null
+  });
+  Projects.insert({
+    name: 'Visit archives',
+    submitted: new Date(),
+    status: 'active',
+    board: personalBoardId,
+    owner: null
+  });
+  Projects.insert({
+    name: 'Be awesome',
+    submitted: new Date(),
+    status: 'active',
     board: personalBoardId,
     owner: null
   });
@@ -51,12 +79,12 @@ if (Boards.find().count() === 0) {
   var date = dateModifier(new Date(), 'week', -1);
 
   Goals.insert({
-    name: 'A goal that was partially reached',
+    name: 'add a new project to this board below',
     year: dateFormatter(date, 'YYYY'),
     quarter: dateFormatter(date, 'Q'),
     month: dateFormatter(date, 'M'),
     week: dateFormatter(date, 'w'),
-    project: Projects.findOne({status: 'active'})._id,
+    project: Projects.findOne({name: 'Add new project'})._id,
     board: personalBoardId,
     view: 'week',
     submitted: new Date(),
@@ -64,12 +92,12 @@ if (Boards.find().count() === 0) {
     owner: null
   });
   Goals.insert({
-    name: 'Another one',
+    name: 'set the state of these two goals reached',
     year: dateFormatter(date, 'YYYY'),
     quarter: dateFormatter(date, 'Q'),
     month: dateFormatter(date, 'M'),
     week: dateFormatter(date, 'w'),
-    project: Projects.findOne({status: 'active'})._id,
+    project: Projects.findOne({name: 'Add new project'})._id,
     board: personalBoardId,
     view: 'week',
     submitted: new Date(),
@@ -77,38 +105,38 @@ if (Boards.find().count() === 0) {
     owner: null
   });
   Goals.insert({
-    name: 'This was completely reached',
+    name: 'add a new project-goal for this week',
     year: dateFormatter(date, 'YYYY'),
     quarter: dateFormatter(date, 'Q'),
     month: dateFormatter(date, 'M'),
     week: dateFormatter(date, 'w'),
-    project: Projects.findOne({status: 'active'})._id,
+    project: Projects.findOne({name: 'Add new goals for weeks, months..'})._id,
     board: personalBoardId,
     view: 'week',
     submitted: new Date(),
-    status: "reached",
+    status: "default",
     owner: null
   });
   Goals.insert({
-    name: 'This we were not able to reach',
+    name: 'change to Month view',
     year: dateFormatter(date, 'YYYY'),
     quarter: dateFormatter(date, 'Q'),
     month: dateFormatter(date, 'M'),
     week: dateFormatter(date, 'w'),
-    project: Projects.findOne({status: 'active'})._id,
+    project: Projects.findOne({name: 'Add new goals for weeks, months..'})._id,
     board: personalBoardId,
     view: 'week',
     submitted: new Date(),
-    status: "not-reached",
+    status: "default",
     owner: null
   });
   Goals.insert({
-    name: 'And we haven\'t set a state yet',
+    name: 'rename a project and a goal',
     year: dateFormatter(date, 'YYYY'),
     quarter: dateFormatter(date, 'Q'),
     month: dateFormatter(date, 'M'),
     week: dateFormatter(date, 'w'),
-    project: Projects.findOne({status: 'active'})._id,
+    project: Projects.findOne({name: 'Rename projects and goals'})._id,
     board: personalBoardId,
     view: 'week',
     submitted: new Date(),
@@ -119,12 +147,12 @@ if (Boards.find().count() === 0) {
   var date = dateModifier(new Date(), 'week', 0);
 
   Goals.insert({
-    name: 'This week we have new goals',
+    name: 'make a project inactive',
     year: dateFormatter(date, 'YYYY'),
     quarter: dateFormatter(date, 'Q'),
     month: dateFormatter(date, 'M'),
     week: dateFormatter(date, 'w'),
-    project: Projects.findOne({status: 'active'})._id,
+    project: Projects.findOne({name: 'Make projects inactive'})._id,
     board: personalBoardId,
     view: 'week',
     submitted: new Date(),
@@ -132,12 +160,64 @@ if (Boards.find().count() === 0) {
     owner: null
   });
   Goals.insert({
-    name: 'That can drive us forward',
+    name: 'step forward and backward in time',
     year: dateFormatter(date, 'YYYY'),
     quarter: dateFormatter(date, 'Q'),
     month: dateFormatter(date, 'M'),
     week: dateFormatter(date, 'w'),
-    project: Projects.findOne({status: 'active'})._id,
+    project: Projects.findOne({name: 'Add new goals for weeks, months..'})._id,
+    board: personalBoardId,
+    view: 'week',
+    submitted: new Date(),
+    status: "default",
+    owner: null
+  });
+  Goals.insert({
+    name: 'then reset to today by clicking the date',
+    year: dateFormatter(date, 'YYYY'),
+    quarter: dateFormatter(date, 'Q'),
+    month: dateFormatter(date, 'M'),
+    week: dateFormatter(date, 'w'),
+    project: Projects.findOne({name: 'Add new goals for weeks, months..'})._id,
+    board: personalBoardId,
+    view: 'week',
+    submitted: new Date(),
+    status: "default",
+    owner: null
+  });
+  Goals.insert({
+    name: 'delete a goal',
+    year: dateFormatter(date, 'YYYY'),
+    quarter: dateFormatter(date, 'Q'),
+    month: dateFormatter(date, 'M'),
+    week: dateFormatter(date, 'w'),
+    project: Projects.findOne({name: 'Delete anything'})._id,
+    board: personalBoardId,
+    view: 'week',
+    submitted: new Date(),
+    status: "default",
+    owner: null
+  });
+  Goals.insert({
+    name: 'delete a project',
+    year: dateFormatter(date, 'YYYY'),
+    quarter: dateFormatter(date, 'Q'),
+    month: dateFormatter(date, 'M'),
+    week: dateFormatter(date, 'w'),
+    project: Projects.findOne({name: 'Delete anything'})._id,
+    board: personalBoardId,
+    view: 'week',
+    submitted: new Date(),
+    status: "default",
+    owner: null
+  });
+  Goals.insert({
+    name: 'visit the archives',
+    year: dateFormatter(date, 'YYYY'),
+    quarter: dateFormatter(date, 'Q'),
+    month: dateFormatter(date, 'M'),
+    week: dateFormatter(date, 'w'),
+    project: Projects.findOne({name: 'Visit archives'})._id,
     board: personalBoardId,
     view: 'week',
     submitted: new Date(),
@@ -148,14 +228,30 @@ if (Boards.find().count() === 0) {
   var date = dateModifier(new Date(), 'week', 1);
   
   Goals.insert({
-    name: 'And lead the way to the future',
+    name: 'start now :)',
     year: dateFormatter(date, 'YYYY'),
     quarter: dateFormatter(date, 'Q'),
     month: dateFormatter(date, 'M'),
     week: dateFormatter(date, 'w'),
-    project: Projects.findOne({status: 'active'})._id,
+    project: Projects.findOne({name: 'Be awesome'})._id,
     board: personalBoardId,
     view: 'week',
+    submitted: new Date(),
+    status: "default",
+    owner: null
+  });
+
+  var date = dateModifier(new Date(), 'month', 0);
+
+  Goals.insert({
+    name: 'change back to Week view',
+    year: dateFormatter(date, 'YYYY'),
+    quarter: dateFormatter(date, 'Q'),
+    month: dateFormatter(date, 'M'),
+    week: dateFormatter(date, 'w'),
+    project: Projects.findOne({name: 'Add new goals for weeks, months..'})._id,
+    board: personalBoardId,
+    view: 'month',
     submitted: new Date(),
     status: "default",
     owner: null

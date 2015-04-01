@@ -1,9 +1,3 @@
-Template.inactiveProjectItem.helpers({
-  boardName: function (boardId) {
-    return Boards.findOne({_id: boardId}).name;
-  }
-});
-
 Template.inactiveProjectItem.events({
   'click .setProjectActive': function(e, tmpl) {
     var id = this._id;

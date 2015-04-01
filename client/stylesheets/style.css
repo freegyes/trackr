@@ -1,3 +1,7 @@
+body {
+  padding-top: 30px;
+}
+
 /* Notifications extra styling */
 ul.notifications {
   top: 50px;
@@ -56,6 +60,31 @@ h5 span {
         display: none;
     }
 }
+
+input[type="text"].input-border {
+  border-color: #ccc;
+  outline: 0 none;
+}
+
+input[type="text"] {
+  border-color: white;
+  box-shadow: 0 0 0 white inset, 0 0 0 rgba(126, 239, 104, 0.6);
+  outline: 0 none;
+}
+::-webkit-input-placeholder {
+  text-align: center;
+}
+:-moz-placeholder {
+  text-align: center;
+}
+:-ms-input-placeholder {
+  text-align: center;
+}
+
+.fade-in {
+  display: none;
+}
+
 
 .text-condensed {
   font-size: 85%;
@@ -126,5 +155,5 @@ table {
 }
 
 .double-navbar-page {
-  padding-top: 100px;
+  padding-top: 50px;
 }

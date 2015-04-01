@@ -1,23 +1,22 @@
 Template.goalActions.events({
   'click .deleteGoal': function() {
+    Notifications.warn('Goal removed', '<strong>' + this.name + '</strong');
     Goals.remove(this._id);
-    Notifications.warn('Goal removed', '');
   },
   'click .setGoalName': function(e, tmpl) {
-    // add goal id to session
-    Session.set('editing-goal', this._id);
-    bootbox.prompt({
-      title: "Edit the name of your goal:",
-      value: Goals.findOne({_id: Session.get('editing-goal')}).name,
-      callback: function(result) {
-        if (result === null) {
-          Session.set('editing-goal', null);
-        } else {
-           Goals.update(Session.get('editing-goal'), {$set: {name: result}});     
-           Notifications.success('Changed name', 'The name of the goal was changed successfully')
+    var id = this._id;
+      bootbox.prompt({
+        title: "Edit the name of your goal:",
+        value: Goals.findOne({_id: id}).name,
+        callback: function(result) {
+          if (result === null) {
+            return
+          } else {
+            Goals.update(id, {$set: {name: result}});     
+            Notifications.success('Changed name', 'The name of the goal was changed successfully.')
+          }
         }
-      }
-    });
+      });
   },
   'click .setStatusReached': function() {
     Goals.update(this._id, {$set: {status: "reached"}})
