@@ -6,16 +6,3 @@
       <span class="label label-primary pull-right more-margin">{{projectsCount}} projects</span>
     </a>
 </template>
-
-<template name="boardActions">
-  <div id="btn-{{this._id}}" class="btn-group action-dropdown">
-    <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
-       <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-      <li><a class="setBoardName" tabindex="-1" href="#"><span class="fa fa-edit"></span> Edit name</a></li>
-      <li><a class="setBoardInactive" tabindex="-1" href="#"><span class="fa fa-ban"></span> Make inactive</a></li>
-      <li><a class="deleteBoard" tabindex="-1" href="#"><span class="fa fa-trash"></span> Remove board</a></li>
-    </ul>
-  </div>
-</template>

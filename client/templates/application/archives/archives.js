@@ -1,22 +1,11 @@
-Template.archives.rendered = function() {
-  Session.setDefault('searchBoards', '');
-  Session.setDefault('searchProjects', '');
-};
-
 Template.archives.helpers({
-  boards: function(status) {
-    if (Boards.find({status: status, name: {$regex: Session.get('searchBoards'),$options:"i"}}).count() === 0) {
-      return false;
-    } else {
-      return Boards.find({status: status, name: {$regex: Session.get('searchBoards'),$options:"i"}});
-    }
+  // extend global board and project helper selector object
+  // with case insensitive regex expression built on the fly
+  filterBoards: function() {
+    return {$regex: Session.get('searchBoards'),$options:"i"}
   },
-  projects: function(status) { 
-    if (Projects.find({status: status, name: {$regex: Session.get('searchProjects'),$options:"i"}}).count() === 0) {
-      return false;
-    } else {
-      return Projects.find({status: status, name: {$regex: Session.get('searchProjects'),$options:"i"}});
-    }
+  filterProjects: function() {
+    return {$regex: Session.get('searchProjects'),$options:"i"}
   }
 })
 
@@ -27,4 +16,4 @@ Template.archives.events({
   'keyup .project-name-search': function(e, tmpl) {
     Session.set('searchProjects', $('.project-name-search').val())
   }
-});
+})

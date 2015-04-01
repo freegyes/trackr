@@ -2,14 +2,31 @@
   <div class="page-header">
     <h1>Boards <small>for organizing your amazing projects</small></h1>
   </div>
-  <div class="form-group">
-    <input type="text" name="board-name" class="form-control board-name" placeholder="Add new board..." data-toggle="tooltip" data-placement="top" title="just type it in and press enter">
+
+  <div class="row">
+    {{#if boards status="active"}}
+        {{#each boards status="active" sort=sort}}
+          <div class="col-md-4 col-sm-6 col-xs-6">
+            <div class="panel panel-default">
+                <div class="panel-body text-center">                    
+                    <h4>{{name}} {{> boardActions}}</h4>
+                </div>
+                <div class="panel-footer">
+                  <button class="btn btn-primary btn-block board-route">
+                    Go to board 
+                    <span class="fa fa-angle-double-right"></span>
+                  </button>
+                </div>
+            </div>
+          </div>
+        {{/each}}
+    {{/if}}
   </div>
-  {{#if boards "active"}}
-    <div class="list-group">
-      {{#each boards "active"}}
-        {{> boardItem}}
-      {{/each}}
-    </div>
-  {{/if}}
+
+  <hr>
+
+  <div class="form-group">
+    <input type="text" name="board-name" class="form-control input-lg board-name" placeholder="Add new board..." data-toggle="tooltip" data-placement="bottom" title="just type it in and press enter">
+  </div>
+
 </template>

@@ -6,21 +6,24 @@ Template.inactiveProjectItem.helpers({
 
 Template.inactiveProjectItem.events({
   'click .setProjectActive': function(e, tmpl) {
-    Notifications.success('Project is now active', '');
-    Projects.update(this._id, {$set: {status: "active"}});
+    var id = this._id;
+    Notifications.success('Project is now active', 'The project: <strong>' + Projects.findOne({_id: id}).name + '</strong> is now active.');
+    Projects.update(id, {$set: {status: "active"}});
   },
   'click .deleteProject': function() {
     var id = this._id;
-    bootbox.confirm("Are you sure you want to do this?", function(result) {
+    var name = Projects.findOne({_id: id}).name;
+    bootbox.confirm("Are you sure you want to delete the project: " + name + "?", function(result) {
       if (result) {
-        Projects.remove(id);
-        Meteor.call('deleteGoals', id, function(error, result) {
+        Meteor.call('deleteProject', id, function(error, result) {
           // show notifications
-          if (error) Notifications.error('Something is not right.', error.reason);
-        });  
-        Notifications.warn('Project and its goals were removed', '');
-        Session.set('projectId', null);
+          if (error) {
+            Notifications.error('Something is not right.', error.reason);
+          } else {
+            Notifications.warn('Project removed', 'Project <strong>' + name + "</strong> and its goals were removed.");    
+          }
+        });
       }
-     });
-   }
+    })
+  }
 })

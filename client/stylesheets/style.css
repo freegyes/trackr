@@ -71,6 +71,13 @@ table {
   overflow-y:auto;
 }
 
+.fade-on-hover {
+  position: absolute;
+  right: 20px;
+  top: 5px;
+  display: none;
+}
+
 /* misc */
 .mouse-hand {
   cursor: pointer;

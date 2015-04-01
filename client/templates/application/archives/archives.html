@@ -11,9 +11,9 @@
       </div>
     </div>
     <div class="panel-body">
-      {{#if boards "inactive"}}
+      {{#if boards status="inactive" name=filterBoards}}
         <div class="list-group">
-          {{#each boards "inactive"}}
+          {{#each boards status="inactive" name=filterBoards sort=sort}}
             {{> inactiveBoardItem}}
           {{/each}}
         </div>
@@ -31,9 +31,9 @@
       </div>
     </div>
     <div class="panel-body">
-      {{#if projects "inactive"}}
+      {{#if projects status="inactive" name=filterProjects}}
         <div class="list-group">
-          {{#each projects "inactive"}}
+          {{#each projects status="inactive" name=filterProjects sort=sort}}
             {{> inactiveProjectItem}}
           {{/each}}
         </div>
