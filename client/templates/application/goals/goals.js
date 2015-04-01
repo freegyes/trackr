@@ -28,6 +28,7 @@ Template.goals.rendered = function() {
   // set container to avoid jumping
   $('input').tooltip({container: 'body'});
   $('th').tooltip({container: 'body'});  
+
 }
 
 Template.goals.helpers({
