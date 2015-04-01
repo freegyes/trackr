@@ -1,89 +1,64 @@
 <template name="goals">
-  {{#if projects "active"}}
-    {{#each projects "active"}}
-    <div class="row">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <span class="panel-title">
-            <i class="panel-title-icon fa fa-cube"></i>
-            {{name}}
-          </span>
-        </div> <!-- / .panel-heading -->
-        
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="panel panel-default">
-                <div class="panel-heading text-center">
-                  <h3 class="panel-title" data-toggle="tooltip" data-placement="top" title="{{goalsRange "-1"}}" data-original-title="{{goalsRange "-1"}}">
-                    {{viewBase}} {{modifiedDate "-1"}}
-                  </h3>
-                </div>
-
-                <ul class="list-group">
-                  {{#each goals "-1" _id ..}}
-                    <li class="list-group-item {{addStateClass}}">
-                      {{name}}
-                      {{> goalActions}}
-                    </li>
-                  {{/each}}
-                  <li class="list-group-item">
-                    <input type="text" name="goal-name--1" class="form-control goal-name" placeholder="Add new goal..." data-mod="-1" data-project="{{this._id}}" data-toggle="tooltip" data-placement="bottom" title="just type it in and press enter">
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="panel panel-default">
-                <div class="panel-heading text-center">
-                  <h3 class="panel-title" data-toggle="tooltip" data-placement="top" title="{{goalsRange "0"}}" data-original-title="{{goalsRange "0"}}">
-                    {{viewBase}} {{modifiedDate "0"}}
-                  </h3>
-                </div>
-
-                <ul class="list-group">
-                  {{#each goals "0" _id ..}}
-                    <li class="list-group-item {{addStateClass}}">
-                      {{name}}
-                      {{> goalActions}}
-                    </li>
-                  {{/each}}
-                  <li class="list-group-item">
-                    <input type="text" name="goal-name-0" class="form-control goal-name" placeholder="Add new goal..." data-mod="0" data-project="{{this._id}}" data-toggle="tooltip" data-placement="bottom" title="just type it in and press enter">
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="panel panel-default">
-                <div class="panel-heading text-center">
-                  <h3 class="panel-title" data-toggle="tooltip" data-placement="top" title="{{goalsRange "+1"}}" data-original-title="{{goalsRange "+1"}}">
-                    {{viewBase}} {{modifiedDate "+1"}}
-                  </h3>
-                </div>
-
-                <ul class="list-group">
-                  {{#each goals "+1" _id ..}}
-                    <li class="list-group-item {{addStateClass}}">
-                      {{name}}
-                      {{> goalActions}}
-                    </li>
-                  {{/each}}
-                  <li class="list-group-item">
-                    <input type="text" name="goal-name-1" class="form-control goal-name" placeholder="Add new goal..." data-mod="+1" data-project="{{this._id}}" data-toggle="tooltip" data-placement="bottom" title="just type it in and press enter">
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div> <!-- / .panel-body -->
-      </div> <!-- / .panel -->
-
+  <div class="row">
+    <div class="table-responsive">
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th class="col-md-3">
+              #
+            </th>
+            {{#each modifiers}}
+              <th class="col-md-3 text-center">
+              {{viewBase}} {{modifiedDate this}}  
+              </th>
+            {{/each}}
+          </tr>
+        </thead>
+      </table>
     </div>
-    {{/each}}
-  {{else}}
-  <div class="alert alert-info" role="alert">
-    <p class="lead"><span class="fa fa-long-arrow-left fa-lg text-danger"></span> Add a new active project to start.</p>
+    <div class="table-responsive table-content">
+      <table class="table table-condensed">
+        <tbody>
+          {{#if projects "active"}}
+            {{#each projects "active"}}
+              <tr>
+                <td class="col-md-3">
+                  {{> projectItem}}
+                </td>
+                {{#each modifiers}}
+                  <td class="col-md-3">
+                    <ul class="list-group no-bottom-margin text-condensed">
+                      {{#each goals this ../_id }}
+                        <li class="list-group-item {{addStateClass}} padding-right-30">
+                          {{name}}
+                          {{> goalActions}}
+                        </li>
+                      {{/each}}
+                    </ul>
+                    <div class="form-group more-margin-top no-bottom-margin">
+                      <input type="text" name="goal-name-{{this}}" class="form-control input-sm goal-name" placeholder="Add new goal..." data-mod="{{this}}" data-project="{{../_id}}" data-toggle="tooltip" data-placement="bottom" title="just type it in and press enter">
+                    </div>
+                  </td>
+                {{/each}}
+              </tr>
+            {{/each}}
+            <tr>
+              <td>
+                <div class="form-group no-bottom-margin">
+                  <input type="text" name="project-name" class="form-control input-sm project-name" placeholder="Add new project..." data-toggle="tooltip" data-placement="top" title="just type it in and press enter">
+                </div>
+              </td>
+              {{#each modifiers}}
+                <td></td>
+              {{/each}}
+            </tr>
+          {{else}}
+            <div class="alert alert-info" role="alert">
+              <p class="lead"><span class="fa fa-long-arrow-left fa-lg text-danger"></span> Add a new active project to start.</p>
+            </div>  
+          {{/if}}
+        </tbody>
+      </table>
+    </div>
   </div>
-  {{/if}}
 </template>

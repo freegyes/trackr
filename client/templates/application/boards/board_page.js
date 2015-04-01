@@ -45,7 +45,7 @@ Template.boardPage.helpers({
     return Boards.findOne({_id: Session.get('boardId')}).name;
   },
   projectsCount: function() {
-    return Projects.find({board: this._id}).count();
+    return Projects.find({board: this._id, status: "active"}).count();
   },
   goalsCount: function() {
     return Goals.find({board: this._id}).count();

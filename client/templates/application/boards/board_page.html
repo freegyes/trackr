@@ -1,31 +1,18 @@
 <template name="boardPage">
   <div class="navbar navbar-default navbar-fixed-top second-nav">
     <div class="container">
-      <h1>
+      <h2>
         <span class="fa fa-th-large"></span> 
         {{name}}
         {{>viewControl}}
         {{>timeControl}}
         <small>
-          ({{projectsCount}} projects and {{goalsCount}} goals)
+          ({{projectsCount}} projects)
         </small>
-      </h1>
+      </h2>
     </div>
   </div>
-  <div class="row double-navbar-page">
-    <div id="project-panel">
-        <div id="opener">
-          <span class="icon fa fa-bars fa-lg"> Projects</span>
-        </div>
-        <div id="project-table">
-          {{> projectsList}}
-        </div>
-       <a href="#" class="btn btn-sm btn-block btn-default reset-filters">
-         Reset filters
-       </a>
-    </div> <!-- #/project-panel -->
-    <div class="col-md-12">
+  <div class="double-navbar-page">
       {{> goals}}
-    </div>
   </div>
 </template> 

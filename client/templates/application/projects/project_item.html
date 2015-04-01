@@ -1,12 +1,14 @@
 <template name="projectItem">
-  <a href="#" id="{{this._id}}" class="list-group-item {{state}}">
-    {{name}}
-    {{> projectActions}}
-  </a>
+  <ul class="list-group no-bottom-margin text-condensed">
+      <a href="#" id="{{this._id}}" class="list-group-item {{state}} padding-right-30">
+      <strong>{{name}}</strong>
+      {{> projectActions}}
+      </a>
+  </ul>
 </template>
 
 <template name="projectActions">
-  <div id="btn-{{this._id}}" class="btn-group pull-right">
+  <div id="btn-{{this._id}}" class="btn-group action-dropdown">
     <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
        <span class="caret"></span>
     </button>

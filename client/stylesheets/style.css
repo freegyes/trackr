@@ -33,9 +33,43 @@ h5 span {
   padding:0 10px; 
 }
 
-.project-panel {
-  background: #E0ECF5;
-  background: rgba(224, 236, 245, 0.9);
+.action-dropdown {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.padding-right-30 {
+  padding-right: 30px;
+}
+
+/* table fixed first col */
+.table-responsive>.fixed-column {
+    position: absolute;
+    display: inline-block;
+    width: auto;
+    border-right: 1px solid #ddd;
+    background-color: #fff;
+}
+@media(min-width:768px) {
+    .table-responsive>.fixed-column {
+        display: none;
+    }
+}
+
+
+.text-condensed {
+  font-size: 85%;
+}
+/*
+table {
+  table-layout:fixed;
+}
+*/
+
+.table-content {
+  height:500px;
+  overflow-y:auto;
 }
 
 /* misc */
@@ -49,6 +83,14 @@ h5 span {
 
 .more-margin {
   margin-right: 5px;
+}
+
+.more-margin-top {
+  margin-top: 5px;
+}
+
+.no-bottom-margin {
+  margin-bottom: 0;
 }
 
 .second-nav {

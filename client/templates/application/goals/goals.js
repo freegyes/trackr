@@ -6,6 +6,16 @@ Template.goals.created = function() {
 }
 
 Template.goals.rendered = function() {
+  $(window).resize(function() {
+     Session.set('windowHeight', window.innerHeight);
+   });
+
+  var setHeight = Tracker.autorun(function() {
+    $('.table-content').height(function(index, height) {
+        return Session.get('windowHeight') - $(this).offset().top;
+    });
+  });
+
   var init = Tracker.autorun(function() {
     Session.get('boardId');
     // wait for the dom to render
@@ -106,6 +116,10 @@ Template.goals.helpers({
   },
   viewBase: function() {
     return Session.get('view').toUpperCase();
+  },
+  modifiers: function() {
+    var modrange = [-1,0,1];
+    return modrange;
   }
 });
 
@@ -134,6 +148,28 @@ Template.goals.events({
 
         // reset input 
         $('.goal-name').val('');
+
+      });   
+    }
+  },
+  'keyup .project-name': function(e, tmpl) {
+    // if enter is pressed then add project to db
+    if (e.which == 13 && $('.project-name').val()) {
+      var projectAttributes = {
+        name: $('.project-name').val(),
+        board: Session.get('boardId')
+      };
+
+      Meteor.call('projectInsert', projectAttributes, function(error, result) {
+        // show notifications
+        if (error) Notifications.error('Something is not right.', error.reason);
+        Notifications.success('Project added', projectAttributes.name + ' has been successfully added.');
+        // set project active in the session
+        // Session.set('projectId', result._id);
+        // set session null
+        Session.set('projectId', null);
+        // reset input 
+        $('.project-name').val('');
 
       });   
     }
