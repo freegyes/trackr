@@ -1,35 +1,28 @@
 Template.boards.rendered = function() {
+  // init tooltips
   $('input').tooltip();
 };
 
-Template.boards.helpers({
-  boards: function(status) {
-    if (Boards.find({status: status}).count() === 0) {
-      return false;
-    } else {
-      return Boards.find({status: status});
-    }
-  }
-})
-
 Template.boards.events({
-  'keyup .board-name': function(e, tmpl) {
-    // if enter is pressed then add board to db
-    if (e.which == 13 && $('.board-name').val()) {
-      var boardAttributes = {
-        name: $('.board-name').val()
-      };
-
-      Meteor.call('boardInsert', boardAttributes, function(error, result) {
-        // show notifications
-        if (error) Notifications.error('Something is not right.', error.reason);
-        Notifications.success('Board added', boardAttributes.name + ' has been successfully added.');
-        // set board active in the session
-        Session.set('boardId', result._id);
-        // reset input 
-        $('.board-name').val('');
-
-      });   
+  // add new boards from input via addInput
+  'keyup .board-name': function(e){
+    // if enter is pressed
+    if (e.which == 13) {
+      //call Meteor method 'boardInsert'
+      addInput('.board-name', 'board', 'Insert');
     }
+  },
+  // on hover (mouseenter and mouseleave)
+  // show and hide board settings dropdown button
+  'mouseenter .panel': function() {
+    $('#btn-' + this._id).fadeIn(250);
+  },
+  'mouseleave .panel': function() {
+    $('#btn-' + this._id).fadeOut(250)
+  },
+  // on clicking the .board-route button
+  // redirect to the specific board page
+  'click .board-route': function() {
+    Router.go('boardPage', {_id: this._id});
   }
 });

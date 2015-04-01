@@ -1,3 +1,7 @@
+body {
+  padding-top: 30px;
+}
+
 /* Notifications extra styling */
 ul.notifications {
   top: 50px;
@@ -33,9 +37,74 @@ h5 span {
   padding:0 10px; 
 }
 
-.project-panel {
-  background: #E0ECF5;
-  background: rgba(224, 236, 245, 0.9);
+.action-dropdown {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.padding-right-30 {
+  padding-right: 30px;
+}
+
+/* table fixed first col */
+.table-responsive>.fixed-column {
+    position: absolute;
+    display: inline-block;
+    width: auto;
+    border-right: 1px solid #ddd;
+    background-color: #fff;
+}
+@media(min-width:768px) {
+    .table-responsive>.fixed-column {
+        display: none;
+    }
+}
+
+input[type="text"].input-border {
+  border-color: #ccc;
+  outline: 0 none;
+}
+
+input[type="text"] {
+  border-color: white;
+  box-shadow: 0 0 0 white inset, 0 0 0 rgba(126, 239, 104, 0.6);
+  outline: 0 none;
+}
+::-webkit-input-placeholder {
+  text-align: center;
+}
+:-moz-placeholder {
+  text-align: center;
+}
+:-ms-input-placeholder {
+  text-align: center;
+}
+
+.fade-in {
+  display: none;
+}
+
+
+.text-condensed {
+  font-size: 85%;
+}
+/*
+table {
+  table-layout:fixed;
+}
+*/
+
+.table-content {
+  height:500px;
+  overflow-y:auto;
+}
+
+.fade-on-hover {
+  position: absolute;
+  right: 20px;
+  top: 5px;
+  display: none;
 }
 
 /* misc */
@@ -43,19 +112,48 @@ h5 span {
   cursor: pointer;
 }
 
+.mouse-default {
+  cursor: default;
+}
+
 .more-padding {
   padding-right: 10px;
+}
+
+.padding-top-5 {
+  padding-top: 5px;
+}
+
+.padding-top-10 {
+  padding-top: 10px;
 }
 
 .more-margin {
   margin-right: 5px;
 }
 
+.more-margin-top {
+  margin-top: 5px;
+}
+
+.no-bottom-margin {
+  margin-bottom: 0;
+}
+
 .second-nav {
   top: 50px;
+  max-height: 50px;
+  overflow: hidden;
   background-color: white;
 }
 
+.truncate {
+  width: 450px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .double-navbar-page {
-  padding-top: 100px;
+  padding-top: 50px;
 }

@@ -1,0 +1,46 @@
+<template name="archives">
+  <div class="page-header">
+    <h1>Archives <small>for keeping your precious memories safe</small></h1>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <h3 class="panel-title pull-left padding-top-5">Inactive Boards</h3>  
+      <div class="input-group pull-right">
+        <input type="text" name="board-name-search" class="form-control input-sm board-name-search panel-control" placeholder="Filter boards..." data-toggle="tooltip" data-placement="top" title="just begin typing">  
+      </div>
+    </div>
+    <div class="panel-body">
+      {{#if boards status="inactive" name=filterBoards}}
+        <div class="list-group">
+          {{#each boards status="inactive" name=filterBoards sort=sort}}
+            {{> inactiveBoardItem}}
+          {{/each}}
+        </div>
+      {{else}}
+        <p class="lead">There are no inactive boards</p>
+      {{/if}}
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <h3 class="panel-title pull-left padding-top-5">Inactive Projects</h3>  
+      <div class="input-group pull-right">
+        <input type="text" name="project-name-search" class="form-control input-sm project-name-search panel-control" placeholder="Filter projects..." data-toggle="tooltip" data-placement="top" title="just begin typing">  
+      </div>
+    </div>
+    <div class="panel-body">
+      {{#if projects status="inactive" name=filterProjects}}
+        <div class="list-group">
+          {{#each projects status="inactive" name=filterProjects sort=sort}}
+            {{> inactiveProjectItem}}
+          {{/each}}
+        </div>
+      {{else}}
+        <p class="lead">There are no inactive Projects</p>
+      {{/if}}
+    </div>
+  </div>
+
+</template>

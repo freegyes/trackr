@@ -18,5 +18,6 @@ Template.timeControl.events({
   'click .reset-date': function() {
     Session.set('currentDate', new Date());
     dateSetter(Session.get('currentDate'));
+    Notifications.success('Date reset to present', "Current date is: " + displayCurrentDate(Session.get("currentDate")));
   }
 })

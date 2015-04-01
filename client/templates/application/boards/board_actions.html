@@ -1,14 +1,5 @@
-<template name="boardItem">
-    <a href="#" id="{{this._id}}" class="list-group-item">
-      <strong>{{name}}</strong>
-      {{> boardActions}} 
-      <span class="label label-primary pull-right more-margin">{{goalsCount}} goals</span>
-      <span class="label label-primary pull-right more-margin">{{projectsCount}} projects</span>
-    </a>
-</template>
-
 <template name="boardActions">
-  <div id="btn-{{this._id}}" class="btn-group pull-right">
+  <div id="btn-{{this._id}}" class="btn-group fade-on-hover">
     <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
        <span class="caret"></span>
     </button>
