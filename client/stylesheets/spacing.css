@@ -1,0 +1,147 @@
+.padding-none {
+  padding: 0 0 0 0;
+}
+.padding-xs {
+  padding: 1px 1px 1px 1px;
+}
+.padding-sm {
+  padding: 3px 3px 3px 3px;
+}
+.padding-default {
+  padding: 5px 5px 5px 5px;
+}
+.padding-lg {
+  padding: 10px 10px 10px 10px;
+}
+
+.padding-vertical-none {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.padding-vertical-xs {
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+.padding-vertical-sm {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+.padding-vertical-default {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.padding-vertical-lg {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.padding-horizontal-none {
+  padding-left: 0;
+  padding-right: 0;
+}
+.padding-horizontal-xs {
+  padding-left: 1px;
+  padding-right: 1px;
+}
+.padding-horizontal-sm {
+  padding-left: 3px;
+  padding-right: 3px;
+}
+.padding-horizontal-default {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.padding-horizontal-lg {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
+.margin-none {
+  margin: 0 0 0 0;
+}
+.margin-xs {
+  margin: 1px 1px 1px 1px;
+}
+.margin-sm {
+  margin: 3px 3px 3px 3px;
+}
+.margin-default {
+  margin: 5px 5px 5px 5px;
+}
+.margin-lg {
+  margin: 10px 10px 10px 10px;
+}
+
+.margin-vertical-none {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.margin-vertical-xs {
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+.margin-vertical-sm {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.margin-vertical-default {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.margin-vertical-lg {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.margin-horizontal-none {
+  margin-left: 0;
+  margin-right: 0;
+}
+.margin-horizontal-xs {
+  margin-left: 1px;
+  margin-right: 1px;
+}
+.margin-horizontal-sm {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+.margin-horizontal-default {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.margin-horizontal-lg {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
+
+
+.padding-right-30 {
+  padding-right: 30px;
+}
+
+.more-padding {
+  padding-right: 10px;
+}
+
+.padding-top-5 {
+  padding-top: 5px;
+}
+
+.padding-top-10 {
+  padding-top: 10px;
+}
+
+.more-margin {
+  margin-right: 5px;
+}
+
+.more-margin-top {
+  margin-top: 5px;
+}
+
+.no-bottom-margin {
+  margin-bottom: 0;
+}

@@ -1,0 +1,18 @@
+<template name="goalsList">
+  <table class="table text-condensed no-bottom-margin">  
+    <tbody>
+      {{#each goals ../_id view year quarter month week}}
+        <tr class="goal-row {{addStateClass}}">
+          <td class="padding-none margin-none">
+            <p class="editable padding-lg margin-vertical-none" data-type="text" data-name="goal-name" data-pk="{{this._id}}" data-collection="Goals" data-display="false">
+              {{name}}
+            </p>
+          </td>
+          {{#unless widerContext view}}
+            <td class="goal-actions padding-sm">{{> goalActions }}</td>
+          {{/unless}}
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</template>

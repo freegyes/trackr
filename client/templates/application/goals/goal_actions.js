@@ -13,7 +13,6 @@ Template.goalActions.events({
             return
           } else {
             Goals.update(id, {$set: {name: result}});     
-            Notifications.success('Changed name', 'The name of the goal was changed successfully.')
           }
         }
       });
