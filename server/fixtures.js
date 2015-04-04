@@ -1,16 +1,24 @@
 // Fixture data for views
 if (Views.find().count() === 0) {
   Views.insert({
-    timeFrame: 'week'
+    order: 0,
+    timeFrame: 'week',
+    name: 'week'
   });
   Views.insert({
-    timeFrame: 'month'
+    order: 1,
+    timeFrame: 'month',
+    name: 'month'
   });
   Views.insert({
-    timeFrame: 'quarter'
+    order: 2,
+    timeFrame: 'quarter',
+    name: 'quarter'
   });
   Views.insert({
-    timeFrame: 'year'
+    order: 3,
+    timeFrame: 'year',
+    name: 'year'
   });
 }
 
@@ -241,7 +249,7 @@ if (Boards.find().count() === 0) {
     owner: null
   });
 
-  var date = dateModifier(new Date(), 'month', 0);
+  var date = dateModifier(new Date(), 'month', 1);
 
   Goals.insert({
     name: 'change back to Week view',
