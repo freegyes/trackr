@@ -12,7 +12,12 @@ Template.boardPage.events({
         if (result === null) {
           return
         } else {
-          var emailBody = '<h4>Week 13</h4><ul><li>this is a goal</li><li>this is a goal</li><li>this is a goal</li><li>this is a goal</li><li>this is a goal</li><li>this is a goal</li>/ul><h4>Week 14</h4><ul><li>this is a goal</li><li>this is a goal</li><li>this is a goal</li><li>this is a goal</li><li>this is a goal</li><li>this is a goal</li>/ul><hr><img src=\"http://placehold.it/350x150\"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat ipsa officiis deserunt modi exercitationem velit fugit eos adipisci pariatur harum. Tenetur itaque mollitia odit porro!</p>';
+          var dataContext = {
+            projects: Projects.find(),
+            url:"http://trackr.meteor.com",
+            title:"Check out your goals on the site!"
+          };
+          var emailBody = Blaze.toHTMLWithData(Template.emailGoals,dataContext);
           Meteor.call('sendEmail',
                       result,
                       'trackr@tryfruit.com',
