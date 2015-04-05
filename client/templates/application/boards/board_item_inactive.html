@@ -1,9 +1,7 @@
 <template name="inactiveBoardItem">
-  <li id="{{this._id}}" class="list-group-item">
-    <strong>
-      {{name}}
-    </strong>
-    <div id="btn-{{this._id}}" class="btn-group action-dropdown">
+  <h4>
+    {{name}}
+    <div id="btn-{{this._id}}" class="btn-group fade-on-hover board-settings">
       <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
          <span class="caret"></span>
       </button>
@@ -12,5 +10,5 @@
         <li><a class="deleteBoard" tabindex="-1" href="#"><span class="fa fa-trash"></span> Remove board</a></li>
       </ul>
     </div>
-  </li>
+  </h4>
 </template>

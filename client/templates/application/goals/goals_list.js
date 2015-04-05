@@ -27,10 +27,17 @@ Template.goalsList.helpers({
         break;
     };
 
+    // set auto sorting by status
+    var sort = {
+      sort: {
+        "status": -1
+      }
+    }
+
     // set a session variable to be able to subscribe for changes
     Session.set('goalsCount', Goals.find(selector).count())
     
-    return Goals.find(selector);
+    return Goals.find(selector, sort);
   },
   // dynamically change contextual state of goals
   // by updating their class

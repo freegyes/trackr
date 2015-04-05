@@ -12,11 +12,15 @@
     </div>
     <div class="panel-body">
       {{#if boards status="inactive" name=filterBoards}}
-        <div class="list-group">
-          {{#each boards status="inactive" name=filterBoards sort=sort}}
-            {{> inactiveBoardItem}}
+        {{#each boards status="inactive" name=filterBoards sort=sort}}
+          <div class="col-md-4 col-sm-6 col-xs-6">
+            <div class="panel panel-default">
+              <div class="panel-body text-center">
+                {{> inactiveBoardItem}}
+              </div>
+            </div>
+          </div>
           {{/each}}
-        </div>
       {{else}}
         <p class="lead">There are no inactive boards</p>
       {{/if}}

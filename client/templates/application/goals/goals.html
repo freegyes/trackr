@@ -5,19 +5,9 @@
       <div class="row text-center">
         <div class="row-same-height row-full-height">
           <div class="col-xs-2 col-xs-height col-full-height padding-none filter-goals">
-            <h3>#</h3>
-            <!-- for filtering
-            <div class="input-group">
-              <input type="text" name="project-name-search" class="form-control project-name-search input-sm input-border" placeholder="Filter projects..." data-toggle="tooltip" data-placement="bottom" title="just begin typing">
-              <div class="input-group-btn">
-                <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Sort <span class="caret"></span></button>
-                <ul class="dropdown-menu dropdown-menu-right" role="menu">  
-                  <li><a href="#" class="sort-date-asc">Ascending</a></li>
-                  <li><a href="#" class="sort-date-desc">Descending</a></li>
-                </ul>
-              </div>
+            <div class="btn-group">
+              <input type="text" class="form-control project-name-search input-sm empty no-border" id="filterBar" placeholder="&#xF002; Filter projects" style="font-family:Arial, FontAwesome">
             </div>
-            -->
           </div>
           {{#each headers}}
             <div class="col-xs-2 col-xs-height col-full-height padding-none {{widerContextHeaderClass this.view}}">
@@ -46,7 +36,7 @@
                     {{#if widerContext this.view}}
                     {{else}}
                     <div class="form-group no-bottom-margin">
-                      <input type="text" name="goal-name" class="form-control input-sm goal-name" placeholder="add new goal..." data-board="{{../../_id}}" data-project="{{../_id}}" data-view="{{view}}" data-year="{{year}}" data-quarter="{{quarter}}" data-month="{{month}}" data-week="{{week}}" title="just type it in and press enter">
+                      <input type="text" name="goal-name" class="form-control input-sm goal-name no-border" placeholder="add new goal..." data-board="{{../../_id}}" data-project="{{../_id}}" data-view="{{view}}" data-year="{{year}}" data-quarter="{{quarter}}" data-month="{{month}}" data-week="{{week}}" title="just type it in and press enter">
                     </div>
                     {{/if}}
                   </div>
@@ -58,12 +48,12 @@
     </div>
     <div class="row">
       <div class="form-group">
-        <input type="text"  name="project-name" class="form-control input-lg project-name" placeholder="add new project...">
+        <input type="text"  name="project-name" class="form-control input-lg project-name no-border" placeholder="add new project...">
       </div>
     </div>
   {{else}}
     <div class="form-group">
-      <input type="text"  name="project-name" class="form-control input-lg project-name" placeholder="add new project...">
+      <input type="text"  name="project-name" class="form-control input-lg project-name no-border" placeholder="add new project...">
     </div>
   {{/if}}
   <!-- / project rows -->

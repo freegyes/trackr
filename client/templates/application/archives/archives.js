@@ -15,5 +15,13 @@ Template.archives.events({
   },
   'keyup .project-name-search': function(e, tmpl) {
     Session.set('searchProjects', $('.project-name-search').val())
-  }
+  },
+  // on hover (mouseenter and mouseleave)
+  // show and hide board settings dropdown button
+  'mouseenter .panel': function() {
+    $('#btn-' + this._id).fadeIn(250);
+  },
+  'mouseleave .panel': function() {
+    $('#btn-' + this._id).fadeOut(250)
+  },
 })

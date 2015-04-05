@@ -1,7 +1,7 @@
 <template name="viewControl">
-  <div class="btn-group pull-right" data-toggle="buttons">
+  <div class="btn-group" data-toggle="buttons">
     {{#each views}}
-    <label class="btn btn-default time-frame {{viewClass}}">
+    <label class="btn btn-default btn-sm time-frame {{viewClass}}">
       <input type="radio" name="options" autocomplete="off"> {{timeFrame}} 
     </label>
     {{/each}}

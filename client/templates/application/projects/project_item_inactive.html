@@ -6,14 +6,7 @@
     <small>
       [on board: {{ boardName board }}]
     </small>
-    <div id="btn-{{this._id}}" class="btn-group action-dropdown">
-      <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
-         <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="setProjectActive" tabindex="-1" href="#"><span class="fa fa-play text-success"></span> Make active</a></li>
-        <li><a class="deleteProject" tabindex="-1" href="#"><span class="fa fa-trash"></span> Remove project</a></li>
-      </ul>
-    </div>
+    <a class="btn btn-default btn-xs margin-horizontal-sm pull-right deleteProject" tabindex="-1" href="#"><span class="fa fa-trash"></span> Remove project</a>
+    <a class="btn btn-default btn-xs margin-horizontal-sm pull-right setProjectActive" tabindex="-1" href="#"><span class="fa fa-play text-success"></span> Make active</a>
   </li>
 </template>
