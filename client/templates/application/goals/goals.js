@@ -2,6 +2,9 @@ Template.goals.created = function() {
   // set the default view
   Session.set('view', 'week');
 
+  // reset filtering
+  Session.set('searchProjects', '');
+
   // set sort object for the collection
   Session.set('sort', {submitted: 1});
   
@@ -156,6 +159,9 @@ Template.goals.helpers({
     } else {
       return 'current-goals-body';
     }
+  },
+  filterProjects: function() {
+    return {$regex: Session.get('searchProjects'),$options:"i"}
   }
 });
 
@@ -212,12 +218,11 @@ Template.goals.events({
         // reset input 
         $('.project-name').val('');
 
-      });   
-    }
-// this will be for filtering and sorting
-//  },
-//  'keyup .project-name-search': function(e, tmpl) {
-//    Session.set('searchProjects', $('.project-name-search').val())
+      }); 
+    }  
+  },
+  'keyup .project-name-search': function(e, tmpl) {
+    Session.set('searchProjects', $('.project-name-search').val())
 //  },
 //  'click .sort-date-asc': function() {
 //    Session.set('sort', {submitted: 1});

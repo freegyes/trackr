@@ -3,6 +3,21 @@ body {
 }
 
 
+/* Filter Bar onClick expand */
+#filterBar {
+  width:35px;
+  -webkit-transition:width 0.3s ease-in-out; 
+  -moz-transition: width 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out;
+
+  -webkit-backface-visibility: hidden;
+}
+#filterBar:focus {
+  width:100%;
+  -webkit-transition:width 0.5s ease-in-out; 
+  -moz-transition: width 0.5s ease-in-out;
+  transition: width 0.5s ease-in-out;
+}
 
 /* h5 text in the middle of two hr-s*/
 
