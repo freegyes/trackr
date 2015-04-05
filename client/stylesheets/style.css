@@ -54,23 +54,23 @@ h5 span {
     }
 }
 
-input[type="text"].input-border {
+input[type="text"].input-border.no-border {
   border-color: #ccc;
   outline: 0 none;
 }
 
-input[type="text"] {
+input[type="text"].no-border {
   border-color: white;
   box-shadow: 0 0 0 white inset, 0 0 0 rgba(126, 239, 104, 0.6);
   outline: 0 none;
 }
-::-webkit-input-placeholder {
+.no-border::-webkit-input-placeholder {
   text-align: center;
 }
-:-moz-placeholder {
+.no-border:-moz-placeholder {
   text-align: center;
 }
-:-ms-input-placeholder {
+.no-border:-ms-input-placeholder {
   text-align: center;
 }
 
