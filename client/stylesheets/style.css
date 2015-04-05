@@ -54,12 +54,12 @@ h5 span {
     }
 }
 
-input[type="text"].input-border.no-border {
+input[type="text"].input-border {
   border-color: #ccc;
   outline: 0 none;
 }
 
-input[type="text"].no-border {
+input[type="text"] {
   border-color: white;
   box-shadow: 0 0 0 white inset, 0 0 0 rgba(126, 239, 104, 0.6);
   outline: 0 none;
@@ -76,16 +76,6 @@ input[type="text"].no-border {
 
 .text-condensed {
   font-size: 85%;
-}
-/*
-table {
-  table-layout:fixed;
-}
-*/
-
-.table-content {
-  height:500px;
-  overflow-y:auto;
 }
 
 .fade-on-hover {
