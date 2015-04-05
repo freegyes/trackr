@@ -1,7 +1,7 @@
 Template.inactiveBoardItem.events({
   'click .setBoardActive': function(e, tmpl) {
     var id = this._id;
-    Notifications.success('Board is now active', 'The board: <strong>' + Boards.findOne({_id: id}).name + '</strong> is now active.');
+    Notifications.success('Board is now active', 'The board: <strong>' + Boards.findOne({_id: id}).name + '</strong> is now active. <br /> <a href=\"/boards/' + Boards.findOne({_id: id})._id + '\">Click here to visit the board.</a>');
     Boards.update(id, {$set: {status: "active"}});
   },
   'click .deleteBoard': function() {

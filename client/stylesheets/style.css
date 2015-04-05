@@ -178,3 +178,8 @@ td {
   padding: 0;
   margin: 0;
 }
+
+.margin-horizontal-sm.btn {
+  margin-left: 3px;
+  margin-right: 3px;
+}
