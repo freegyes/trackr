@@ -12,5 +12,13 @@
       subject: subject,
       text: text
     });
+  },
+  checkUserByEmail: function (email) {
+    check(email, String);
+    if (Meteor.users.findOne({'emails.address': email})) {
+      return true;
+    } else {
+      return false;
+    }
   }
 });

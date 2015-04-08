@@ -3,6 +3,12 @@ Template.boards.rendered = function() {
   $('input').tooltip();
 };
 
+Template.boards.helpers({
+  userEmail: function() {
+    return Meteor.user().emails[0].address;
+  }
+})
+
 Template.boards.events({
   // add new boards from input via addInput
   'keyup .board-name': function(e){

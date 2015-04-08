@@ -54,16 +54,19 @@ h5 span {
     }
 }
 
-input[type="text"].input-border {
-  border-color: #ccc;
-  outline: 0 none;
-}
-
-input[type="text"] {
+input[type="text"].no-border {
   border-color: white;
   box-shadow: 0 0 0 white inset, 0 0 0 rgba(126, 239, 104, 0.6);
   outline: 0 none;
 }
+
+input[type="text"].no-border:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
 .no-border::-webkit-input-placeholder {
   text-align: center;
 }
