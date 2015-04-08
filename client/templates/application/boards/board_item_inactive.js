@@ -1,8 +1,14 @@
 Template.inactiveBoardItem.events({
   'click .setBoardActive': function(e, tmpl) {
     var id = this._id;
-    Notifications.success('Board is now active', 'The board: <strong>' + Boards.findOne({_id: id}).name + '</strong> is now active. <br /> <a href=\"/boards/' + Boards.findOne({_id: id})._id + '\">Click here to visit the board.</a>');
-    Boards.update(id, {$set: {status: "active"}});
+    var operationObject = {$set: {status: "active"}};
+    Meteor.call('updateBoardStatus', id, operationObject, function (error, result) {
+      if (error) {
+        Notifications.error(error.reason, error.details);
+      } else {
+        Notifications.success('Board is now active', 'The board: <strong>' + Boards.findOne({_id: id}).name + '</strong> is now active. <br /> <a href=\"/boards/' + Boards.findOne({_id: id})._id + '\">Click here to visit the board.</a>');       
+      }
+    });    
   },
   'click .deleteBoard': function() {
     var id = this._id;
@@ -12,7 +18,7 @@ Template.inactiveBoardItem.events({
         Meteor.call('deleteBoard', id, function(error, result) {
           // show notifications
           if (error) {
-            Notifications.error('Something is not right.', error.reason);
+            Notifications.error(error.reason, error.details);
           } else {
             Notifications.warn('Board removed', 'Board <strong>' + name + "</strong> and its projects and goals were removed.");    
           }

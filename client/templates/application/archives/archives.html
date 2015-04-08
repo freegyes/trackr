@@ -11,8 +11,8 @@
       </div>
     </div>
     <div class="panel-body">
-      {{#if boards status="inactive" name=filterBoards}}
-        {{#each boards status="inactive" name=filterBoards sort=sort}}
+      {{#if boards status="inactive" owner=currentUser._id name=filterBoards}}
+        {{#each boards status="inactive" owner=currentUser._id name=filterBoards sort=sort}}
           <div class="col-md-4 col-sm-6 col-xs-6">
             <div class="panel panel-default">
               <div class="panel-body text-center">
