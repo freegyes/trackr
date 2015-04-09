@@ -5,11 +5,16 @@
     <![endif]-->
     <div class="container">
       {{> header}}
-      <div id="main">
-        {{> notifications}}
-        <div class="container">
-          {{> yield}}
-        </div>
+      <div class="visible-lg-block visible-md-block">
+        <div id="main">
+          {{> notifications}}
+          <div class="container">
+            {{> yield}}
+          </div>
+        </div>  
+      </div>
+      <div class="visible-sm-block visible-xs-block">
+        <p>We're in an early development phase and not yet guarantee a flowless experience anywhere else but desktops</p>
       </div>
     </div>
   </body> <!-- /container --> 
