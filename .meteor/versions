@@ -56,6 +56,8 @@ mongo@1.1.0
 msavin:jetsetter@1.0.7
 msavin:mongol@1.0.12
 natestrauser:x-editable-bootstrap@1.5.2_2
+nemo64:bootstrap@3.3.4_1
+nemo64:bootstrap-data@3.3.4_1
 npm-bcrypt@0.7.8_2
 observe-sequence@1.0.6
 ordered-dict@1.0.3
@@ -75,7 +77,6 @@ srp@1.0.3
 stylus@1.0.7
 templating@1.1.1
 tracker@1.0.7
-twbs:bootstrap@3.3.4
 ui@1.0.6
 underscore@1.0.3
 url@1.0.4
