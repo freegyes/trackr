@@ -72,6 +72,16 @@ copyGoal = function(goalId) {
   bootbox.prompt({
     title: "Don't worry, we can copy that for you to the next " + nextGoalObject.view + ".",
     value: Goals.findOne({_id: goalId}).name,
+    buttons: {
+        "cancel": {
+            label: 'Don\'t copy.',
+            className: 'btn-default'
+        },
+        "confirm": {
+            label: 'Sure, thanks!',
+            className: 'btn-primary'
+        }
+    },
     callback: function(result) {
       if (result === null) {
         return
