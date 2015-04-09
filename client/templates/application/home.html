@@ -1,3 +1,7 @@
 <template name="home">
-  {{>boards}}
+  {{#if currentUser}}
+    {{>boards}}
+  {{else}}
+    {{> landingPage}}
+  {{/if}}
 </template>

@@ -5,7 +5,12 @@ Template.boards.rendered = function() {
 
 Template.boards.helpers({
   userEmail: function() {
-    return Meteor.user().emails[0].address;
+    if (Meteor.user()) {
+      return Meteor.user().emails[0].address;  
+    } else {
+      return false;
+    }
+    
   },
   shared: function() {
     if (this.hasAccess.length > 0) {
