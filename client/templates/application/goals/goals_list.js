@@ -30,7 +30,8 @@ Template.goalsList.helpers({
     // set auto sorting by status
     var sort = {
       sort: {
-        "status": -1
+        "status": -1,
+        "submitted": 1
       }
     }
 
