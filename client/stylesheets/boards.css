@@ -1,0 +1,7 @@
+.panel-fixed {
+  min-height: 125px;
+  max-height: 125px;
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
