@@ -22,8 +22,9 @@ Template.goalsHeading.helpers({
       switch (view) {
       case 'week':
         formatter = 'YYYY[.] MM[.] DD[.]';
-        var from = moment(date).startOf(view).format(formatter);
-        var to = moment(date).endOf(view).format(formatter);
+        // weekday hack to show monday as first (suday has the zero index)
+        var from = moment(date).startOf(view).weekday(1).format(formatter);
+        var to = moment(date).startOf(view).weekday(7).format(formatter);
         return from + " - " + to;
         break;
       case 'month':
