@@ -32,6 +32,7 @@ Template.goals.rendered = function() {
       $('.editable').editable("destroy").editable({
         unsavedclass: null,
         mode: 'inline',
+        onblur: 'submit',
         showbuttons: false,
         success: function(response, newValue) {
           // get the primary key and the collection
