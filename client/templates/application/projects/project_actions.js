@@ -1,4 +1,60 @@
 Template.projectActions.events({
+  'click .setResponsible': function(e, tmpl) {
+    var self = this;
+    var board = self.board;
+    var hasAccess = Boards.findOne({_id: board}).hasAccess;
+    hasAccess.push(Meteor.user().emails[0].address);
+    var modalBody = "";
+
+    if (!(self.responsible)) {
+      var modalBody = "<p>Currently nobody is responsible for this project.";
+    } else {
+      var modalBody = "<p>Currently <strong>" + self.responsible + "</strong> is responsible for this project.";
+    }
+
+      // list anyone who has access
+      if (hasAccess.length > 0) {
+       modalBody += "<div class=\"form-group\"><label for=\"email\">Choose from this list: </label><select class=\"form-control set-responsibility\">"
+        for (var i = 0; i < hasAccess.length; i++) {
+          modalBody += "<option>" + hasAccess[i] + "</option>";
+        };
+        modalBody += "</select></div>";
+      } else {
+       modalBody += "<p>This board is NOT currently shared with anyone</p>"
+      }
+
+      bootbox.dialog({
+       title: "Set responsibility for: " + self.name,
+       message: modalBody,
+       onEscape: function() {
+         // action on close or hitting escape
+       },
+       buttons: {
+         cancel: {
+           label: "Cancel",
+           className: "btn-warning",
+           callback: function() {
+             // action on closing the dialog with button
+           }
+         },
+         success: {
+          label: "Set",
+          className: "btn-success",
+          callback: function () {
+            var email = $('.set-responsibility').val();
+              var operationObject = {$set: {responsible: email}};
+              Meteor.call('setResponsibility', self._id, operationObject, function (error, result) {
+                if (error) {
+                  Notifications.error(error.reason, error.details);
+                } else {
+                  Notifications.success('Responsible person added', 'Currently <strong>' + email + '</strong> is responsible for this project.');    
+                }
+              });            
+          }
+        }
+      }
+      });
+  },
   'click .deleteProject': function() {
     var id = this._id;
     var name = Projects.findOne({_id: id}).name;

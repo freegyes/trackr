@@ -159,9 +159,6 @@ Template.goals.helpers({
     } else {
       return 'current-goals-body';
     }
-  },
-  filterProjects: function() {
-    return {$regex: Session.get('searchProjects'),$options:"i"}
   }
 });
 

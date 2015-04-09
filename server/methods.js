@@ -16,9 +16,18 @@
   checkUserByEmail: function (email) {
     check(email, String);
     if (Meteor.users.findOne({'emails.address': email})) {
-      return true;
+      return Meteor.users.findOne({'emails.address': email})._id;
     } else {
       return false;
     }
+  },
+  getUserEmail: function (id) {
+    check(id, String);
+    if (Meteor.users.findOne({_id: id})) {
+      return  Meteor.users.findOne({_id: id}).emails[0].address;  
+    } else {
+      throw new Meteor.Error(404, 'Not found', 'No such user in database.');
+      return false;
+    };
   }
 });

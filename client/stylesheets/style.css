@@ -2,7 +2,6 @@ body {
   padding-top: 30px;
 }
 
-
 /* Filter Bar onClick expand */
 #filterBar {
   width:35px;
@@ -111,6 +110,7 @@ input[type="text"].no-border:focus {
   max-height: 50px;
   overflow: hidden;
   background-color: white;
+  z-index: 999;
 }
 
 .truncate {

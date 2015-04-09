@@ -6,6 +6,13 @@ Template.boards.rendered = function() {
 Template.boards.helpers({
   userEmail: function() {
     return Meteor.user().emails[0].address;
+  },
+  shared: function() {
+    if (this.hasAccess.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 })
 
