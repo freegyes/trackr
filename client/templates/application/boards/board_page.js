@@ -14,6 +14,7 @@ Template.boardPage.events({
         } else {
           var dataContext = {
             projects: Projects.find(),
+            week: moment(Session.get('currentDate')).format('w[. week]'),
             url:"http://trackr.meteor.com",
             title:"Check out your goals on the site!"
           };
@@ -23,7 +24,7 @@ Template.boardPage.events({
                       'trackr@tryfruit.com',
                       '[Fruit TrackR] - Your goals for this week',
                       emailBody);
-          Notifications.success('Email sent', '')
+          Notifications.success('Email sent.', '')
         }
       }
     });

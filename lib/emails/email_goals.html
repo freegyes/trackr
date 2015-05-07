@@ -1,11 +1,9 @@
 <template name="emailGoals">
   <h2>TrackR <small>goals for this week</small></h2>
-  <h4>Week 13</h4>
+  <h4>{{week}}</h4>
 
   <ul>
-  {{#each projects}}
-    <li>{{name}}</li>
-  {{/each}}
+  {{{projects}}}
   </ul>
 
   <h4>Week 14</h4>
