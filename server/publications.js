@@ -1,5 +1,5 @@
 Meteor.publish('views', function() {
-  return Views.find({});
+  return Views.find({}, {sort: {order:1}});
 });
 
 Meteor.publish('boards', function() {
